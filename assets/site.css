@@ -189,6 +189,20 @@ h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); margin: 0 0 0.8rem; }
 
 .card p { margin: 0 0 0.8rem; color: var(--muted); }
 
+.diagram {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1rem 0.5rem;
+  margin-top: 1.25rem;
+  overflow-x: auto;
+}
+
+.diagram .mermaid {
+  display: flex;
+  justify-content: center;
+}
+
 .flow {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

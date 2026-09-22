@@ -66,11 +66,15 @@
       <div class="wrap">
         <h2>How the pieces connect</h2>
         <p class="lede">Academy (LearnWorlds) teaches the foundations. GoliathApp is the reusable engine. GoliathOmics is the genomics product and portal. mojo-align and MethylExtractor are utilities the portal’s workers can call.</p>
-        <div class="flow">
-          <article><strong>Learn</strong><span>Academy on LearnWorlds</span></article>
-          <article><strong>GoliathApp</strong><span>Reusable engine</span></article>
-          <article><strong>GoliathOmics</strong><span>Genomics product</span></article>
-          <article><strong>Tools</strong><span>mojo-align · MethylExtractor</span></article>
+        <div class="diagram">
+          <pre class="mermaid">
+flowchart LR
+  Learn[Academy]
+  App[GoliathApp]
+  Omics[GoliathOmics]
+  Tools["mojo-align and MethylExtractor"]
+  Learn --> App --> Omics --> Tools
+          </pre>
         </div>
       </div>
     </section>
@@ -136,5 +140,6 @@
     </div>
   </footer>
   <script src="/assets/nav.js"></script>
+  <script type="module" src="/assets/mermaid.js"></script>
 </body>
 </html>

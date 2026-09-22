@@ -33,6 +33,21 @@
     <div class="wrap">
       <h1>Tools</h1>
       <p>These repositories stay independent. GoliathOmics workers call them. A change in either tool can change a genomics run, so the product keeps a written list of the features it requires.</p>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TB
+  Reads[FASTQ]
+  Choice{Alignment path}
+  Mojo["mojo-align: Align, MethylCall, MergeCpG"]
+  Extractor["MethylExtractor: BAM to HDF5"]
+  Calls[Methylation calls]
+  Reads --> Choice
+  Choice -->|WGBS pangenome| Mojo
+  Choice -->|Linear or stock pangenome| Extractor
+  Mojo --> Calls
+  Extractor --> Calls
+        </pre>
+      </div>
       <div class="doors">
         <article class="card">
           <span class="chip">Live</span>
@@ -61,5 +76,6 @@
     </div>
   </footer>
   <script src="/assets/nav.js"></script>
+  <script type="module" src="/assets/mermaid.js"></script>
 </body>
 </html>

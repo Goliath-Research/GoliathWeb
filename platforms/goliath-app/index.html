@@ -34,6 +34,22 @@
       <p class="chip chip-progress">In progress</p>
       <h1>GoliathApp</h1>
       <p>One platform, many applications. GoliathApp holds the Meta model, RBAC, workflow engine, Python REST gateway, and the shared worker. The portal UI is still Delphi and is moving to Node.js and React. The old Delphi gateway is deprecated.</p>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TB
+  Portal["Portal UI, Delphi moving to React"]
+  Gateway["Python gateway, goliath-gateway"]
+  DB[("Database: Meta, RBAC, wf, cfg")]
+  Worker[Shared worker]
+  Storage["/work, optional"]
+  Delphi["Delphi gateway, deprecated"]
+  Portal --> Gateway
+  Worker --> Gateway
+  Gateway --> DB
+  Worker -.-> Storage
+  Delphi -.-> Gateway
+        </pre>
+      </div>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://github.com/Goliath-Research/GoliathApp">View on GitHub</a>
         <a href="/platforms/goliath-omics/">GoliathOmics</a>
@@ -53,5 +69,6 @@
     </div>
   </footer>
   <script src="/assets/nav.js"></script>
+  <script type="module" src="/assets/mermaid.js"></script>
 </body>
 </html>

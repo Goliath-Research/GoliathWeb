@@ -35,6 +35,20 @@
       <h1>GoliathOmics</h1>
       <p>The genomics specialization of GoliathApp. It adds methylation and liquid-biopsy actions, data types, and workers. mojo-align and MethylExtractor stay separate tools those workers can call. An NVIDIA Clara Parabricks path is optional.</p>
       <p>The portal at omics.goliathresearch.com is not open yet. The public repositories are.</p>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart LR
+  App[GoliathApp engine]
+  Product["GoliathOmics actions and workers"]
+  Mojo[mojo-align]
+  Extractor[MethylExtractor]
+  Clara["Clara Parabricks, optional"]
+  App --> Product
+  Product --> Mojo
+  Product --> Extractor
+  Product -.-> Clara
+        </pre>
+      </div>
       <div class="cta-row">
         <span class="btn" aria-disabled="true">Open GoliathOmics portal</span>
         <a class="btn btn-primary" href="https://github.com/Goliath-Research/GoliathOmics">View public repos</a>
@@ -53,5 +67,6 @@
     </div>
   </footer>
   <script src="/assets/nav.js"></script>
+  <script type="module" src="/assets/mermaid.js"></script>
 </body>
 </html>

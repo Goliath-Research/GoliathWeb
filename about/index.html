@@ -34,6 +34,16 @@
       <h1>About</h1>
       <p>Goliath Research Inc teaches data science online and publishes the software those courses and partner labs actually run. The academy stays on LearnWorlds. The platforms stay in public repositories. This website only explains how they fit together.</p>
       <p>Partners can try the code on their own machines. We do not ask for samples to be shipped offsite for a demo.</p>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart TB
+  Hub["www, this site"]
+  Academy["academy, LearnWorlds"]
+  Omics["omics portal, later"]
+  Hub --> Academy
+  Hub -.-> Omics
+        </pre>
+      </div>
       <div class="cta-row">
         <a class="btn btn-primary" href="/contact/">Contact us</a>
       </div>
@@ -51,5 +61,6 @@
     </div>
   </footer>
   <script src="/assets/nav.js"></script>
+  <script type="module" src="/assets/mermaid.js"></script>
 </body>
 </html>
