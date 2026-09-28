@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tools — Goliath Research</title>
-  <meta name="description" content="mojo-align and MethylExtractor are independent tools used by GoliathOmics workers.">
+  <meta name="description" content="GoliathAlign and MethylExtractor are independent tools used by GoliathOmics workers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
 flowchart TB
   Reads[FASTQ]
   Choice{Alignment path}
-  Mojo["mojo-align: Align, MethylCall, MergeCpG"]
+  Mojo["GoliathAlign: Align, MethylCall, MergeCpG"]
   Extractor["MethylExtractor: BAM to HDF5"]
   Calls[Methylation calls]
   Reads --> Choice
@@ -51,9 +51,9 @@ flowchart TB
       <div class="doors">
         <article class="card">
           <span class="chip">Live</span>
-          <h3>mojo-align</h3>
-          <p>Mojo 1.1 alignment, MethylCall, and MergeCpG for whole-genome bisulfite pangenome runs.</p>
-          <a class="btn btn-primary" href="https://github.com/Goliath-Research/mojo-align">mojo-align</a>
+          <h3>GoliathAlign</h3>
+          <p>Multiplatform Mojo aligner (formerly mojo-align): Align, MethylCall, and MergeCpG for whole-genome bisulfite pangenome runs, plus linear BAM alignment.</p>
+          <a class="btn btn-primary" href="https://github.com/Goliath-Research/GoliathAlign">GoliathAlign</a>
         </article>
         <article class="card">
           <span class="chip">Live</span>

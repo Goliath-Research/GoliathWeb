@@ -33,14 +33,14 @@
     <div class="wrap">
       <p class="chip chip-progress">In progress</p>
       <h1>GoliathOmics</h1>
-      <p>The genomics specialization of GoliathApp. It adds methylation and liquid-biopsy actions, data types, and workers. mojo-align and MethylExtractor stay separate tools those workers can call. An NVIDIA Clara Parabricks path is optional.</p>
+      <p>The genomics specialization of GoliathApp. It adds methylation and liquid-biopsy actions, data types, and workers. GoliathAlign and MethylExtractor stay separate tools those workers call. An NVIDIA Clara Parabricks path is optional.</p>
       <p>The portal at omics.goliathresearch.com is not open yet. The public repositories are.</p>
       <div class="diagram">
         <pre class="mermaid">
 flowchart LR
   App[GoliathApp engine]
   Product["GoliathOmics actions and workers"]
-  Mojo[mojo-align]
+  Mojo[GoliathAlign]
   Extractor[MethylExtractor]
   Clara["Clara Parabricks, optional"]
   App --> Product

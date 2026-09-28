@@ -1,5 +1,9 @@
 # GoliathWeb
 
+**GoliathApp** is the platform. **GoliathOmics** is the genomics product. **GoliathAlign** (formerly mojo-align) aligns reads. **MethylExtractor** calls methylation from linear BAM files. **GoliathWeb** is the public hub.
+
+Index: [../GoliathApp/docs/workspace-index.md](../GoliathApp/docs/workspace-index.md).
+
 Public hub for Goliath Research Inc. It explains the academy, GoliathApp, GoliathOmics, and the open-source tools. It does not host courses or the omics portal.
 
 Follows [SITE_HUB_WIREFRAME.md](https://github.com/Goliath-Research/GoliathApp/blob/main/docs/SITE_HUB_WIREFRAME.md).
@@ -22,7 +26,7 @@ Open http://127.0.0.1:8088/
 | `/learn/` | Enter Academy → https://academy.goliathresearch.com |
 | `/platforms/goliath-app/` | View on GitHub |
 | `/platforms/goliath-omics/` | Portal button disabled; public repo is the live action |
-| `/platforms/tools/` | mojo-align and MethylExtractor |
+| `/platforms/tools/` | GoliathAlign and MethylExtractor |
 | `/open-source/` | GitHub organization |
 | `/about/` | Contact us |
 | `/contact/` | mailto:contact@goliathresearch.com |

@@ -55,7 +55,7 @@
         </article>
         <article class="card">
           <h3>Specialize</h3>
-          <p><strong>GoliathOmics</strong> — methylation and liquid-biopsy workflows (open MIT components), with tools such as mojo-align and MethylExtractor, and an optional NVIDIA Clara Parabricks path.</p>
+          <p><strong>GoliathOmics</strong> — methylation and liquid-biopsy workflows (open MIT components), with tools such as GoliathAlign and MethylExtractor, and an optional NVIDIA Clara Parabricks path.</p>
           <a href="/platforms/goliath-omics/">Omics overview</a>
           ·
           <span aria-disabled="true">Open portal</span>
@@ -65,14 +65,14 @@
     <section class="section">
       <div class="wrap">
         <h2>How the pieces connect</h2>
-        <p class="lede">Academy (LearnWorlds) teaches the foundations. GoliathApp is the reusable engine. GoliathOmics is the genomics product and portal. mojo-align and MethylExtractor are utilities the portal’s workers can call.</p>
+        <p class="lede">Academy (LearnWorlds) teaches the foundations. GoliathApp is the reusable engine. GoliathOmics is the genomics product. GoliathAlign and MethylExtractor are the aligner and the linear-BAM extractor those workers call.</p>
         <div class="diagram">
           <pre class="mermaid">
 flowchart LR
   Learn[Academy]
   App[GoliathApp]
   Omics[GoliathOmics]
-  Tools["mojo-align and MethylExtractor"]
+  Tools["GoliathAlign and MethylExtractor"]
   Learn --> App --> Omics --> Tools
           </pre>
         </div>
@@ -91,14 +91,14 @@ flowchart LR
           <article class="card">
             <span class="chip chip-progress">In progress</span>
             <h3>GoliathOmics</h3>
-            <p>Genomics product migrating out of the working GoliathWorkflow monorepo.</p>
+            <p>Genomics product on GoliathApp: studies, workers, and algorithms.</p>
             <a href="https://github.com/Goliath-Research/GoliathOmics">View on GitHub</a>
           </article>
           <article class="card">
             <span class="chip">Live</span>
-            <h3>mojo-align</h3>
-            <p>Mojo 1.1 alignment utilities the omics workers can call.</p>
-            <a href="https://github.com/Goliath-Research/mojo-align">View on GitHub</a>
+            <h3>GoliathAlign</h3>
+            <p>Multiplatform Mojo aligner (formerly mojo-align). CPU, NVIDIA CUDA, and AMD HIP.</p>
+            <a href="https://github.com/Goliath-Research/GoliathAlign">View on GitHub</a>
           </article>
           <article class="card">
             <span class="chip">Live</span>
