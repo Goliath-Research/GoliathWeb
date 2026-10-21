@@ -1,6 +1,6 @@
 # GoliathWeb
 
-Static sites for Goliath Research Inc, in one repository. Each site builds on its own. Nothing in this repo publishes a site or changes DNS.
+Static sites for Goliath Research Inc, in one repository. Each site builds on its own. `sites/www` is published to GitHub Pages. `sites/app` and `sites/omics` are not published. This repository does not change DNS.
 
 | Host | Directory | What it is |
 | --- | --- | --- |
@@ -82,48 +82,32 @@ Dev ports: www `4321`, app `4322`, omics `4323`. Build output:
 
 `.github/workflows/ci.yml` installs, validates the four manifests, lints, tests, typechecks, and builds all three sites. It does not deploy.
 
-## Deploy later
+## Publishing www
 
-David publishes each `dist/` directory on its own host. These steps are not wired up in CI, and this repo does not contain DNS records or a hosting config file.
+`.github/workflows/pages.yml` builds `@goliath/www` and deploys `sites/www/dist` to GitHub Pages on every push to `main`, and when the workflow is run by hand. It does not build or deploy `sites/app` or `sites/omics`. Pages on this repository is already set to GitHub Actions. The workflow does not change that setting.
 
-Build from the repository root (Node.js 22.23.4 or newer, no environment variables):
+`sites/www` is built for the custom domain at the root:
 
-```bash
-npm ci && npm run build --workspace @goliath/www
-npm ci && npm run build --workspace @goliath/app
-npm ci && npm run build --workspace @goliath/omics
-```
+- `site`: `https://www.goliathresearch.com`
+- `base`: `/`
 
-Publish `sites/www/dist`, `sites/app/dist`, and `sites/omics/dist` at the root of each hostname (`base` is `/`). The www build needs outbound HTTPS to `https://raw.githubusercontent.com` during the build. Do not add a token.
+Asset URLs are root paths such as `/_astro/...`. They match `https://www.goliathresearch.com/`. They do not match the project URL `https://goliath-research.github.io/GoliathWeb/` until the custom domain below is saved. The workflow does not use `actions/configure-pages`, which would rewrite `base` to `/GoliathWeb/`.
 
-### Recommendation
+`sites/www/public/CNAME` is copied into the build as `sites/www/dist/CNAME` and contains one line, `www.goliathresearch.com`. A `CNAME` file in an Actions artifact is ignored. The custom domain is set in the repository settings.
 
-Use **Cloudflare Pages on the free plan, three projects, one GitHub repository**. Cost is $0. The free plan includes unlimited sites, unlimited static bandwidth, 500 builds per month, one build at a time, and 100 custom domains per project. Static asset requests are not billed.
+The www build needs outbound HTTPS to `https://raw.githubusercontent.com`. Do not add a token.
 
-GitHub Pages is also $0, and it is the right place to publish **www alone** from this repository. One GitHub repository has one Pages site, and a Pages custom domain is a single hostname (`CNAME` holds one name). `www`, `app`, and `omics` cannot be three custom domains on that one site. Serving all three from GitHub Pages means two more repositories (one Pages site each) plus a publish step David adds later. That is still $0, and it splits the deploy away from this repo, so it is not the cheaper way to run three hostnames.
+`app.goliathresearch.com` and `omics.goliathresearch.com` stay unpublished. One GitHub repository has one Pages site and one custom domain, so those two hostnames need a separate host when they are ready. Leave `academy.goliathresearch.com` where it is.
 
-Netlify’s free tier can also host three sites from one repo. Cloudflare Pages is the recommendation: static bandwidth is unlimited, and three projects fit the free plan.
+### DNS
 
-### Cloudflare Pages
+David adds this record at the DNS host for `goliathresearch.com`. This repository does not change DNS.
 
-Create three projects connected to `Goliath-Research/GoliathWeb`, or upload the `dist` folders by hand. Leave the root directory at the repository root.
+| Type | Name | Target |
+| --- | --- | --- |
+| CNAME | `www` | `goliath-research.github.io` |
 
-| Project | Build command | Output directory | Custom domain, when DNS is ready |
-| --- | --- | --- | --- |
-| www | `npm ci && npm run build --workspace @goliath/www` | `sites/www/dist` | `www.goliathresearch.com` |
-| app | `npm ci && npm run build --workspace @goliath/app` | `sites/app/dist` | `app.goliathresearch.com` |
-| omics | `npm ci && npm run build --workspace @goliath/omics` | `sites/omics/dist` | `omics.goliathresearch.com` |
+Then, on `Goliath-Research/GoliathWeb`, open Settings → Pages:
 
-Production branch: `main`. Node.js version: 22.23.4 or newer. Do not set secrets. Connecting the Git repository makes Cloudflare build on later pushes; that is the publish step, and it is separate from the GitHub Actions workflow in this repo.
-
-Leave `academy.goliathresearch.com` where it is.
-
-### GitHub Pages, for www only
-
-1. On `Goliath-Research/GoliathWeb`, open Settings → Pages.
-2. Set the source to GitHub Actions.
-3. Add a workflow David runs on purpose (do not add it to the CI workflow above) that uploads `sites/www/dist` with `actions/upload-pages-artifact` and deploys with `actions/deploy-pages`.
-4. After the first deploy, set the custom domain to `www.goliathresearch.com` and follow GitHub’s DNS instructions.
-5. For `app` and `omics`, either use the Cloudflare projects above or create two more repositories and publish those `dist` directories the same way.
-
-Direct upload on Cloudflare (dashboard “Upload assets”, or `wrangler pages deploy sites/www/dist` after `npx wrangler login`) publishes one site without giving the host ongoing access to the repository. Repeat for `sites/app/dist` and `sites/omics/dist`.
+1. Custom domain: `www.goliathresearch.com`
+2. Enforce HTTPS
