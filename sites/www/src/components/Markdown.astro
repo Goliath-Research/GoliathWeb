@@ -1,0 +1,54 @@
+---
+import Inline from "./Inline.astro";
+import { markdownBlocks } from "../lib/markdown.ts";
+
+interface Props {
+  source: string;
+}
+
+const { source } = Astro.props;
+const blocks = markdownBlocks(source);
+---
+
+<div class="prose">
+  {
+    blocks.map((block) => {
+      switch (block.kind) {
+        case "paragraph":
+          return (
+            <p>
+              <Inline nodes={block.children} />
+            </p>
+          );
+        case "list":
+          return block.ordered ? (
+            <ol>
+              {block.items.map((item) => (
+                <li>
+                  <Inline nodes={item} />
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <ul>
+              {block.items.map((item) => (
+                <li>
+                  <Inline nodes={item} />
+                </li>
+              ))}
+            </ul>
+          );
+        case "code":
+          return (
+            <pre>
+              <code>{block.text}</code>
+            </pre>
+          );
+        default: {
+          const unreachable: never = block;
+          throw new Error(`Unexpected markdown block ${JSON.stringify(unreachable)}`);
+        }
+      }
+    })
+  }
+</div>

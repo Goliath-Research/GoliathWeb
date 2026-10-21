@@ -1,0 +1,23 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Contact"
+  description="Contact Goliath Research Inc."
+>
+  <section class="hero">
+    <div class="wrap wrap-narrow">
+      <h1>Contact</h1>
+      <p class="lede">
+        For the platforms, custom development, or a question the academy does not cover, write to
+        {brand.contactEmail}. Course enrollment stays on the academy site.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={brand.contactMailto}>{brand.contactEmail}</a>
+        <a class="btn btn-ghost" href={brand.academy}>Academy</a>
+      </div>
+    </div>
+  </section>
+</Layout>

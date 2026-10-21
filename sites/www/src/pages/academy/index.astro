@@ -1,0 +1,26 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Academy"
+  description="The Goliath Research academy is hosted at academy.goliathresearch.com."
+>
+  <section class="hero">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">01 — Academy</p>
+      <h1>Academy</h1>
+      <p class="lede">
+        Courses are hosted at academy.goliathresearch.com. This website does not run the classroom.
+      </p>
+      <p>
+        The academy courses are self-paced, built from e-books and Jupyter notebooks, and delivered
+        on LearnWorlds.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={brand.academy}>academy.goliathresearch.com</a>
+      </div>
+    </div>
+  </section>
+</Layout>

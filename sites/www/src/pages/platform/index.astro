@@ -1,0 +1,59 @@
+---
+import { loadProducts, requireProduct } from "@goliath/catalog";
+import { brand } from "@goliath/ui/brand";
+import Markdown from "../../components/Markdown.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const platform = requireProduct(await loadProducts(), "goliathapp");
+const spotlights = [
+  /role-based access control/i,
+  /workflow engine/i,
+  /user-defined actions/i,
+  /distributed workers/i,
+];
+const highlighted = platform.features.filter((feature) =>
+  spotlights.some((pattern) => pattern.test(feature.title)),
+);
+---
+
+<Layout
+  title="GoliathApp"
+  description="GoliathApp is the Goliath Research platform: access control, workflows, user-defined actions, and distributed workers."
+>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">02 — Platform</p>
+      <h1>{platform.name}</h1>
+      <p class="lede">{platform.tagline}</p>
+      <p>
+        GoliathApp provides role-based access control, a workflow engine, user-defined actions, and
+        distributed workers. Applications extend it. The platform does not describe those applications
+        and does not depend on them.
+      </p>
+      <Markdown source={platform.description} />
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/products/goliathapp/">Product page</a>
+        <a class="btn btn-ghost" href={platform.links.repository} rel="noreferrer">Repository</a>
+        <a class="btn btn-ghost" href={brand.hosts.app}>app.goliathresearch.com</a>
+      </div>
+      <p class="note">
+        The platform host is a separate site. In this repository it is still a placeholder, not a running product.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <h2>From the manifest</h2>
+      <div class="feature-grid">
+        {
+          highlighted.map((feature) => (
+            <article class="card">
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

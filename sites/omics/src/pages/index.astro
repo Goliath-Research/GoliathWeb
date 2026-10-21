@@ -1,0 +1,30 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="GoliathOmics"
+  documentTitle="GoliathOmics"
+  description="Placeholder for the GoliathOmics site at omics.goliathresearch.com."
+>
+  <section class="hero">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">omics.goliathresearch.com</p>
+      <h1>GoliathOmics</h1>
+      <p class="lede">
+        This host will be the GoliathOmics site. The page is a placeholder so the site can build and
+        deploy on its own. It is not a running portal.
+      </p>
+      <p>
+        The company description and the product page generated from <code>.goliath/product.json</code>
+        are on the global site.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={`${brand.hosts.www}/omics/`}>Omics on the company site</a>
+        <a class="btn btn-ghost" href={`${brand.hosts.www}/products/goliathomics/`}>Product page</a>
+        <a class="btn btn-ghost" href="https://github.com/Goliath-Research/GoliathOmics" rel="noreferrer">Repository</a>
+      </div>
+    </div>
+  </section>
+</Layout>

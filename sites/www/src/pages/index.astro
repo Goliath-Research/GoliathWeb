@@ -1,0 +1,100 @@
+---
+import { loadProducts, sortByHierarchy } from "@goliath/catalog";
+import { brand } from "@goliath/ui/brand";
+import Hierarchy from "../components/Hierarchy.astro";
+import Layout from "../layouts/Layout.astro";
+
+const products = sortByHierarchy(await loadProducts());
+---
+
+<Layout
+  title="Home"
+  documentTitle="Goliath Research Inc"
+  description="Goliath Research Inc: an academy, the GoliathApp platform, GoliathOmics, and custom development."
+>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Goliath Research Inc</p>
+      <h1>Open platforms for computational science.</h1>
+      <p class="lede">
+        The company is four parts: an academy, the GoliathApp platform, the GoliathOmics genomics
+        application, and custom development on that stack.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={brand.academy}>Academy</a>
+        <a class="btn btn-ghost" href="/products/">Products</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="company-heading">
+    <div class="wrap">
+      <h2 id="company-heading">The company</h2>
+      <ol class="parts">
+        <li>
+          <a href="/academy/">
+            <span class="part-index">01</span>
+            <span>
+              <h2>Academy</h2>
+              <p>Courses live at academy.goliathresearch.com. This site only links there.</p>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/platform/">
+            <span class="part-index">02</span>
+            <span>
+              <h2>GoliathApp</h2>
+              <p>The platform: role-based access control, a workflow engine, user-defined actions, and distributed workers.</p>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/omics/">
+            <span class="part-index">03</span>
+            <span>
+              <h2>GoliathOmics</h2>
+              <p>Genomics on GoliathApp, using GoliathAlign, MethylExtractor, and process packs.</p>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/custom-development/">
+            <span class="part-index">04</span>
+            <span>
+              <h2>Custom development</h2>
+              <p>Applications, process packs, and integrations built with the published stack.</p>
+            </span>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="software-heading">
+    <div class="wrap">
+      <h2 id="software-heading">How the software fits together</h2>
+      <p>
+        GoliathApp is the platform and the top of the hierarchy. It does not describe the applications
+        built on it. GoliathOmics inherits that platform and uses two standalone utilities, GoliathAlign
+        and MethylExtractor. Those utilities do not depend on GoliathApp or GoliathOmics.
+      </p>
+      <Hierarchy products={products} />
+      <p>
+        <a href="/products/">Product pages</a> are generated from each repository’s <code>.goliath/product.json</code>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="band">
+        <h2>Deployments</h2>
+        <p>
+          Write-ups of real GoliathApp and GoliathOmics deployments will be published here. None are posted yet.
+        </p>
+        <p><a href="/deployments/">Deployment section</a></p>
+      </div>
+    </div>
+  </section>
+</Layout>

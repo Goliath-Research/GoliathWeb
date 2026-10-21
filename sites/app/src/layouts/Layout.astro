@@ -1,0 +1,38 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Base from "@goliath/ui/Base.astro";
+import type { FooterLink, NavItem } from "@goliath/ui/types";
+
+interface Props {
+  title: string;
+  description: string;
+  documentTitle?: string;
+}
+
+const nav: NavItem[] = [
+  { href: `${brand.hosts.www}/platform/`, label: "Company site" },
+  { href: "https://github.com/Goliath-Research/GoliathApp", label: "Repository" },
+];
+
+const footerLinks: FooterLink[] = [
+  { href: brand.hosts.www, label: "www.goliathresearch.com" },
+  { href: `${brand.hosts.www}/products/goliathapp/`, label: "GoliathApp product page" },
+  { href: brand.github, label: "GitHub" },
+];
+
+const { title, description, documentTitle } = Astro.props;
+---
+
+<Base
+  title={title}
+  description={description}
+  documentTitle={documentTitle}
+  siteName="GoliathApp"
+  siteUrl={brand.hosts.app}
+  currentPath={Astro.url.pathname}
+  nav={nav}
+  footerBlurb="Placeholder for the GoliathApp platform site. The company overview is on www.goliathresearch.com."
+  footerLinks={footerLinks}
+>
+  <slot />
+</Base>

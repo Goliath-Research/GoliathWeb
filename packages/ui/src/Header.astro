@@ -1,0 +1,51 @@
+---
+import type { NavItem } from "./types.ts";
+
+interface Props {
+  siteName: string;
+  homeHref: string;
+  nav: NavItem[];
+  currentPath: string;
+}
+
+const { siteName, homeHref, nav, currentPath } = Astro.props;
+
+function isExternal(href: string): boolean {
+  return href.startsWith("https://") || href.startsWith("http://") || href.startsWith("mailto:");
+}
+
+function isCurrent(href: string, path: string): boolean {
+  if (isExternal(href)) return false;
+  if (href === "/") return path === "/";
+  return path === href || path.startsWith(href);
+}
+---
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href={homeHref}>{siteName}</a>
+    <input class="nav-toggle" id="nav-toggle" type="checkbox" />
+    <label class="nav-toggle-label" for="nav-toggle">Menu</label>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        {
+          nav.map((item) => {
+            const current = isCurrent(item.href, currentPath);
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={current ? "page" : undefined}
+                  rel={isExternal(item.href) ? "noreferrer" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

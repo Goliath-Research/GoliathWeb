@@ -1,0 +1,59 @@
+---
+import "@fontsource-variable/fraunces/wght.css";
+import "@fontsource-variable/source-sans-3/wght.css";
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import "./styles.css";
+import type { FooterLink, NavItem } from "./types.ts";
+
+interface Props {
+  title: string;
+  description: string;
+  siteName: string;
+  siteUrl: string;
+  currentPath: string;
+  nav: NavItem[];
+  footerBlurb: string;
+  footerLinks: FooterLink[];
+  documentTitle?: string;
+}
+
+const {
+  title,
+  description,
+  siteName,
+  siteUrl,
+  currentPath,
+  nav,
+  footerBlurb,
+  footerLinks,
+  documentTitle,
+} = Astro.props;
+
+const fullTitle = documentTitle ?? `${title} — ${siteName}`;
+const canonical = new URL(currentPath, siteUrl);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0c4f4c" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <Header siteName={siteName} homeHref="/" nav={nav} currentPath={currentPath} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer blurb={footerBlurb} links={footerLinks} />
+  </body>
+</html>

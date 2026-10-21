@@ -1,0 +1,168 @@
+---
+import {
+  consumersOf,
+  loadProducts,
+  requireProduct,
+  type Product,
+} from "@goliath/catalog";
+import Markdown from "../../components/Markdown.astro";
+import { categoryLabel, emptyDependencyNote, statusClass } from "../../lib/display.ts";
+import { safeUrl } from "../../lib/markdown.ts";
+import Layout from "../../layouts/Layout.astro";
+
+interface Props {
+  product: Product;
+}
+
+export async function getStaticPaths() {
+  const products = await loadProducts();
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const products = await loadProducts();
+const consumers = consumersOf(products, product.id);
+const dependencies = product.dependsOn.map((id) => requireProduct(products, id));
+const related = product.related.map((id) => requireProduct(products, id));
+
+function httpsHref(value: string | null): string | undefined {
+  if (!value) return undefined;
+  return safeUrl(value);
+}
+
+const repository = httpsHref(product.links.repository);
+const website = httpsHref(product.links.website);
+const publishedDocs = httpsHref(product.links.docs);
+const docsSource = repository ? `${repository.replace(/\/$/, "")}/tree/${product.source.ref}/docs` : undefined;
+---
+
+<Layout title={product.name} description={product.tagline}>
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">
+        <span class="chip">{categoryLabel(product.category)}</span>
+        <span class:list={["chip", statusClass(product.status)]}>{product.status}</span>
+        <span class="chip">License: {product.license}</span>
+      </p>
+      <h1>{product.name}</h1>
+      <p class="lede">{product.tagline}</p>
+      <Markdown source={product.description} />
+      <div class="cta-row">
+        {repository && <a class="btn btn-primary" href={repository} rel="noreferrer">Repository</a>}
+        {
+          publishedDocs ? (
+            <a class="btn btn-ghost" href={publishedDocs} rel="noreferrer">
+              Documentation
+            </a>
+          ) : (
+            docsSource && (
+              <a class="btn btn-ghost" href={docsSource} rel="noreferrer">
+                MkDocs source
+              </a>
+            )
+          )
+        }
+        {website && <a class="btn btn-ghost" href={website} rel="noreferrer">Website</a>}
+        <a class="btn btn-ghost" href="/products/">All products</a>
+      </div>
+      {
+        !publishedDocs && (
+          <p class="note">
+            The manifest does not link a published documentation site. MkDocs sources are in the
+            repository. GitHub Pages for those docs is still to be published.
+          </p>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Features</h2>
+      <div class="feature-grid">
+        {
+          product.features.map((feature) => (
+            <article class="card">
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Depends on</h2>
+      <p class="note">Upstream product ids from this manifest’s <code>dependsOn</code> array.</p>
+      {
+        dependencies.length === 0 ? (
+          <p>{emptyDependencyNote(product.id)}</p>
+        ) : (
+          <ul>
+            {dependencies.map((dependency) => (
+              <li>
+                <a href={`/products/${dependency.id}/`}>{dependency.name}</a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Related</h2>
+      <p class="note">Product ids from this manifest’s <code>related</code> array.</p>
+      {
+        related.length === 0 ? (
+          <p>None declared.</p>
+        ) : (
+          <ul>
+            {related.map((item) => (
+              <li>
+                <a href={`/products/${item.id}/`}>{item.name}</a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Used by</h2>
+      <p class="note">
+        Other catalog products that list this id in <code>dependsOn</code>. The site derives this list.
+        It is not a field in this product’s manifest, and this product does not declare those consumers.
+      </p>
+      {
+        consumers.length === 0 ? (
+          <p>No other catalog product lists this id.</p>
+        ) : (
+          <ul>
+            {consumers.map((consumer) => (
+              <li>
+                <a href={`/products/${consumer.id}/`}>{consumer.name}</a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="source-note">
+        Generated at build time from <code>{product.source.owner}/{product.source.repo}@{product.source.ref}/.goliath/product.json</code>, validated with that repository’s <code>.goliath/product.schema.json</code> (schemaVersion 1).
+      </p>
+    </div>
+  </section>
+</Layout>

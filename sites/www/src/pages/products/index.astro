@@ -1,0 +1,33 @@
+---
+import { loadProducts, sortByHierarchy } from "@goliath/catalog";
+import Hierarchy from "../../components/Hierarchy.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const products = sortByHierarchy(await loadProducts());
+---
+
+<Layout
+  title="Products"
+  description="Product pages generated from the public Goliath product.json manifests."
+>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Catalog</p>
+      <h1>Products</h1>
+      <p class="lede">
+        Each page is built from that repository’s <code>.goliath/product.json</code> on the main branch,
+        checked against the <code>product.schema.json</code> shipped beside it. Schema version is 1.
+      </p>
+      <p>
+        <code>dependsOn</code> points at upstream products only. GoliathApp does not list GoliathOmics.
+        GoliathAlign and MethylExtractor do not list GoliathApp or GoliathOmics. GoliathOmics is the
+        product that declares those dependencies.
+      </p>
+      <Hierarchy products={products} />
+      <div class="product-grid">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+</Layout>

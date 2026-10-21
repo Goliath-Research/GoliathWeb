@@ -1,0 +1,52 @@
+---
+import { loadProducts, requireProduct } from "@goliath/catalog";
+import { brand } from "@goliath/ui/brand";
+import Markdown from "../../components/Markdown.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const products = await loadProducts();
+const omics = requireProduct(products, "goliathomics");
+const align = requireProduct(products, "goliathalign");
+const methyl = requireProduct(products, "methylextractor");
+const processPacks = omics.features.find((feature) => /process pack/i.test(feature.title));
+---
+
+<Layout
+  title="GoliathOmics"
+  description="GoliathOmics is the genomics application on GoliathApp. It uses GoliathAlign, MethylExtractor, and process packs."
+>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">03 — Omics</p>
+      <h1>{omics.name}</h1>
+      <p class="lede">{omics.tagline}</p>
+      <p>
+        GoliathOmics inherits GoliathApp and uses the standalone utilities
+        <a href={`/products/${align.id}/`}>{align.name}</a> and
+        <a href={`/products/${methyl.id}/`}>{methyl.name}</a>, plus process packs.
+        MethylExtractor is a performance-optimized fork of MethylDackel, focused on extraction.
+        GoliathAlign and MethylExtractor do not require or know about GoliathApp or GoliathOmics, and
+        GoliathApp does not reference GoliathOmics.
+      </p>
+      <Markdown source={omics.description} />
+      {
+        processPacks && (
+          <article class="card">
+            <h2>{processPacks.title}</h2>
+            <p>{processPacks.description}</p>
+          </article>
+        )
+      }
+      <div class="cta-row">
+        <a class="btn btn-primary" href={`/products/${omics.id}/`}>Product page</a>
+        <a class="btn btn-ghost" href={`/products/${align.id}/`}>{align.name}</a>
+        <a class="btn btn-ghost" href={`/products/${methyl.id}/`}>{methyl.name}</a>
+        <a class="btn btn-ghost" href={brand.hosts.omics}>omics.goliathresearch.com</a>
+      </div>
+      <p class="note">
+        omics.goliathresearch.com will be the GoliathOmics site. In this repository that site is still
+        a placeholder. It is not a running portal.
+      </p>
+    </div>
+  </section>
+</Layout>
