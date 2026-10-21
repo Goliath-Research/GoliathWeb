@@ -1,0 +1,28 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Custom development"
+  description="Goliath Research Inc builds applications, process packs, and integrations on the published Goliath stack."
+>
+  <section class="hero">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">04 — Custom development</p>
+      <h1>Custom development</h1>
+      <p class="lede">
+        Goliath Research Inc builds on the published stack for work that the products do not already cover.
+      </p>
+      <p>
+        That work is applications on GoliathApp, process packs and other genomics pieces on GoliathOmics,
+        and integrations that call the standalone utilities GoliathAlign and MethylExtractor.
+      </p>
+      <p>This site does not list clients, prices, or engagement terms.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={brand.contactMailto}>{brand.contactEmail}</a>
+        <a class="btn btn-ghost" href="/contact/">Contact</a>
+      </div>
+    </div>
+  </section>
+</Layout>

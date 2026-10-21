@@ -1,0 +1,20 @@
+---
+import type { Product } from "@goliath/catalog";
+import { categoryLabel, statusClass } from "../lib/display.ts";
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<article class="card">
+  <p class="meta-row">
+    <span class="chip">{categoryLabel(product.category)}</span>
+    <span class:list={["chip", statusClass(product.status)]}>{product.status}</span>
+  </p>
+  <h2><a href={`/products/${product.id}/`}>{product.name}</a></h2>
+  <p>{product.tagline}</p>
+  <p><a href={`/products/${product.id}/`}>Product page</a></p>
+</article>

@@ -1,0 +1,49 @@
+---
+import { requireProduct, type Product } from "@goliath/catalog";
+import { categoryLabel, formatList } from "../lib/display.ts";
+
+interface Props {
+  products: Product[];
+}
+
+const { products } = Astro.props;
+const platform = requireProduct(products, "goliathapp");
+const omics = requireProduct(products, "goliathomics");
+const align = requireProduct(products, "goliathalign");
+const methyl = requireProduct(products, "methylextractor");
+
+function dependencyNote(product: Product): string {
+  if (product.dependsOn.length === 0) {
+    return product.id === "goliathapp"
+      ? "Top of the hierarchy. Declares no upstream product."
+      : "Standalone. Declares no upstream catalog product.";
+  }
+  const names = product.dependsOn.map((id) => requireProduct(products, id).name);
+  return `Depends on ${formatList(names)}.`;
+}
+
+const nodes = [
+  { product: platform, className: "node node-platform" },
+  { product: align, className: "node node-align" },
+  { product: omics, className: "node node-omics" },
+  { product: methyl, className: "node node-methyl" },
+];
+---
+
+<figure class="hierarchy">
+  <figcaption>
+    GoliathOmics depends on GoliathApp, GoliathAlign, and MethylExtractor. Those three products do not
+    list GoliathOmics.
+  </figcaption>
+  <div class="hierarchy-board">
+    {
+      nodes.map(({ product, className }) => (
+        <article class:list={[className]}>
+          <a href={`/products/${product.id}/`}>{product.name}</a>
+          <p class="meta">{categoryLabel(product.category)}</p>
+          <p>{dependencyNote(product)}</p>
+        </article>
+      ))
+    }
+  </div>
+</figure>

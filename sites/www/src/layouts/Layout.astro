@@ -1,0 +1,27 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Base from "@goliath/ui/Base.astro";
+import { footerLinks, nav } from "../lib/site.ts";
+
+interface Props {
+  title: string;
+  description: string;
+  documentTitle?: string;
+}
+
+const { title, description, documentTitle } = Astro.props;
+---
+
+<Base
+  title={title}
+  description={description}
+  documentTitle={documentTitle}
+  siteName="Goliath Research"
+  siteUrl={brand.hosts.www}
+  currentPath={Astro.url.pathname}
+  nav={nav}
+  footerBlurb="Goliath Research Inc. The academy, the platform site, and the omics site are separate hosts."
+  footerLinks={footerLinks}
+>
+  <slot />
+</Base>

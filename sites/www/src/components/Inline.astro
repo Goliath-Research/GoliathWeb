@@ -1,0 +1,42 @@
+---
+import type { SafeInline } from "../lib/markdown.ts";
+
+interface Props {
+  nodes: SafeInline[];
+}
+
+const { nodes } = Astro.props;
+---
+
+{
+  nodes.map((node) => {
+    switch (node.kind) {
+      case "text":
+        return node.text;
+      case "code":
+        return <code>{node.text}</code>;
+      case "strong":
+        return (
+          <strong>
+            <Astro.self nodes={node.children} />
+          </strong>
+        );
+      case "em":
+        return (
+          <em>
+            <Astro.self nodes={node.children} />
+          </em>
+        );
+      case "link":
+        return (
+          <a href={node.href} rel="noreferrer">
+            <Astro.self nodes={node.children} />
+          </a>
+        );
+      default: {
+        const unreachable: never = node;
+        throw new Error(`Unexpected markdown node ${JSON.stringify(unreachable)}`);
+      }
+    }
+  })
+}

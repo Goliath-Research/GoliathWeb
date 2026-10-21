@@ -1,0 +1,18 @@
+{
+  "name": "@goliath/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./styles.css": "./src/styles.css",
+    "./Base.astro": "./src/Base.astro",
+    "./Header.astro": "./src/Header.astro",
+    "./Footer.astro": "./src/Footer.astro",
+    "./brand": "./src/brand.ts",
+    "./types": "./src/types.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/source-sans-3": "^5.3.1"
+  }
+}
