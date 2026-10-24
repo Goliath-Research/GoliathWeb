@@ -1,24 +1,29 @@
 ---
+import {
+  listOmicsActions,
+  omicsVocabularySummary,
+  renderOmicsActionList,
+} from "@goliath/semantic";
 import { brand } from "@goliath/ui/brand";
 import Layout from "../layouts/Layout.astro";
+
+const summary = omicsVocabularySummary();
+const omicsActions = listOmicsActions();
+const actionListHtml = renderOmicsActionList(omicsActions.slice(0, 12));
 ---
 
 <Layout
   title="GoliathOmics"
   documentTitle="GoliathOmics"
-  description="Placeholder for the GoliathOmics site at omics.goliathresearch.com."
+  description="GoliathOmics site with omics action vocabulary from the public actions catalog."
 >
   <section class="hero">
     <div class="wrap wrap-narrow">
       <p class="eyebrow">omics.goliathresearch.com</p>
       <h1>GoliathOmics</h1>
       <p class="lede">
-        This host will be the GoliathOmics site. The page is a placeholder so the site can build and
-        deploy on its own. It is not a running portal.
-      </p>
-      <p>
-        The company description and the product page generated from <code>.goliath/product.json</code>
-        are on the global site.
+        This host documents the omics action vocabulary from the GoliathOmics actions catalog. Catalog JSON is
+        vendored in <code>@goliath/semantic</code> at build time; nothing here calls a running portal.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href={`${brand.hosts.www}/omics/`}>Omics on the company site</a>
@@ -27,4 +32,77 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </section>
+
+  <section class="semantic-section">
+    <div class="wrap wrap-narrow">
+      <h2>Omics vocabulary</h2>
+      <dl class="semantic-meta-grid">
+        <div>
+          <dt>Omics-namespace actions</dt>
+          <dd>{summary.omicsActionCount}</dd>
+        </div>
+        <div>
+          <dt>Engine actions (catalog)</dt>
+          <dd>{summary.engineActionCount}</dd>
+        </div>
+        <div>
+          <dt>Total actions in catalog</dt>
+          <dd>{summary.totalActionCount}</dd>
+        </div>
+      </dl>
+      <p class="semantic-note">
+        Showing the first twelve omics-namespace actions sorted by display name. Full lists stay in the cached
+        catalog for offline builds.
+      </p>
+      <div set:html={actionListHtml} />
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .semantic-section {
+    padding-block: 2.5rem 4rem;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  }
+  .semantic-meta-grid {
+    display: grid;
+    gap: 1rem 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    margin: 1.5rem 0;
+  }
+  .semantic-meta-grid dt {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .semantic-meta-grid dd {
+    margin: 0.25rem 0 0;
+  }
+  .semantic-note {
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  :global(.semantic-action-list) {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  :global(.semantic-action-list li) {
+    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    border-radius: 0.5rem;
+    padding: 1rem 1.1rem;
+  }
+  :global(.semantic-action-list p) {
+    margin: 0.35rem 0 0;
+    opacity: 0.9;
+  }
+  :global(.semantic-meta) {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    opacity: 0.75;
+  }
+</style>

@@ -1,0 +1,16 @@
+{
+  "name": "@goliath/semantic",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./core": "./src/core.ts",
+    "./omics": "./src/omics.ts"
+  },
+  "scripts": {
+    "fetch:catalogs": "tsx scripts/fetch-catalogs.ts",
+    "generate:types": "tsx scripts/generate-types.ts",
+    "check:semantic-types": "tsx scripts/check-semantic-types.ts"
+  }
+}

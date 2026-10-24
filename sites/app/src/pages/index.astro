@@ -1,24 +1,30 @@
 ---
+import {
+  DEMO_ORGANIZATION_ROWS,
+  listCoreSemanticRequests,
+  organizationSummary,
+  renderOrganizationTable,
+} from "@goliath/semantic";
 import { brand } from "@goliath/ui/brand";
 import Layout from "../layouts/Layout.astro";
+
+const orgSummary = organizationSummary();
+const coreRequests = listCoreSemanticRequests();
+const organizationTableHtml = renderOrganizationTable(DEMO_ORGANIZATION_ROWS);
 ---
 
 <Layout
   title="GoliathApp"
   documentTitle="GoliathApp"
-  description="Placeholder for the GoliathApp platform site at app.goliathresearch.com."
+  description="GoliathApp platform site with core semantic vocabulary from the public GoliathApp catalog."
 >
   <section class="hero">
     <div class="wrap wrap-narrow">
       <p class="eyebrow">app.goliathresearch.com</p>
       <h1>GoliathApp</h1>
       <p class="lede">
-        This host will be the GoliathApp platform site. The page is a placeholder so the site can build
-        and deploy on its own.
-      </p>
-      <p>
-        The company description and the product page generated from <code>.goliath/product.json</code>
-        are on the global site.
+        Static pages on this host use the published GoliathApp semantic catalog at build time. There is no
+        database or runtime API on this site.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href={`${brand.hosts.www}/platform/`}>Platform on the company site</a>
@@ -27,4 +33,88 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </section>
+
+  <section class="semantic-section">
+    <div class="wrap wrap-narrow">
+      <h2>Core vocabulary: {orgSummary.displayName}</h2>
+      <p>{orgSummary.description}</p>
+      <dl class="semantic-meta-grid">
+        <div>
+          <dt>Schema</dt>
+          <dd><code>{orgSummary.schemaId}</code></dd>
+        </div>
+        <div>
+          <dt>Storage relation</dt>
+          <dd><code>{orgSummary.storageRelation}</code></dd>
+        </div>
+        <div>
+          <dt>Attributes</dt>
+          <dd>{orgSummary.attributeCount}</dd>
+        </div>
+        <div>
+          <dt>Semantic requests</dt>
+          <dd>{orgSummary.requestCount}</dd>
+        </div>
+      </dl>
+      <h3>Example rows (static)</h3>
+      <p class="semantic-note">
+        The table below is rendered from typed demo data using <code>@goliath/semantic</code> helpers, not a live
+        portal query.
+      </p>
+      <div set:html={organizationTableHtml} />
+      <h3>Registered core requests</h3>
+      <ul class="semantic-code-list">
+        {coreRequests.map((code) => (
+          <li><code>{code}</code></li>
+        ))}
+      </ul>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .semantic-section {
+    padding-block: 2.5rem 4rem;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  }
+  .semantic-meta-grid {
+    display: grid;
+    gap: 1rem 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    margin: 1.5rem 0;
+  }
+  .semantic-meta-grid dt {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .semantic-meta-grid dd {
+    margin: 0.25rem 0 0;
+  }
+  .semantic-note {
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  .semantic-code-list {
+    columns: 2;
+    gap: 0.5rem 2rem;
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  :global(.semantic-table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 2rem;
+    font-size: 0.95rem;
+  }
+  :global(.semantic-table th),
+  :global(.semantic-table td) {
+    border: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  :global(.semantic-table th) {
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+</style>

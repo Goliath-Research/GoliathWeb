@@ -1,0 +1,14 @@
+{
+  "goliathapp-semantic": {
+    "sha256": "d0628c47b615c5c97b5911bdffeee55fd51a83968d604286a03eb297553b33a4",
+    "url": "https://raw.githubusercontent.com/Goliath-Research/GoliathApp/main/schemas/semantic/catalog.json"
+  },
+  "goliathapp-actions": {
+    "sha256": "9982f5a39fa5404ede30e9d4e22c4edcf1508ec6128c3f157c4d81e06c953ca2",
+    "url": "https://raw.githubusercontent.com/Goliath-Research/GoliathApp/main/schemas/actions/platform_catalog.json"
+  },
+  "goliathomics-actions": {
+    "sha256": "cf233d4c24c82706863f5b343e1eb18c0017ac8e106169ad4a3ded38ee4d4b53",
+    "url": "https://raw.githubusercontent.com/Goliath-Research/GoliathOmics/main/schemas/actions/catalog.json"
+  }
+}

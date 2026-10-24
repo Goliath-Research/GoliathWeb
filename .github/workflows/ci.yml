@@ -39,6 +39,9 @@ jobs:
       - name: Test
         run: npm run test
 
+      - name: Check semantic generated types
+        run: npm run check:semantic-types
+
       - name: Typecheck sites
         run: npm run check
 
