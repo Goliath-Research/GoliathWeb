@@ -16,6 +16,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "tsx --test tests/**/*.test.ts",
     "validate:products": "tsx scripts/validate-products.ts",
+    "fetch:semantic-catalogs": "npm run fetch:catalogs --workspace @goliath/semantic",
+    "generate:semantic-types": "npm run generate:types --workspace @goliath/semantic",
+    "check:semantic-types": "npm run check:semantic-types --workspace @goliath/semantic",
     "dev:www": "npm run dev --workspace @goliath/www",
     "dev:app": "npm run dev --workspace @goliath/app",
     "dev:omics": "npm run dev --workspace @goliath/omics"

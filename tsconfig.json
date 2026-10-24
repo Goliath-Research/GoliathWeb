@@ -8,6 +8,7 @@
     "isolatedModules": true,
     "strict": true,
     "noEmit": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
@@ -16,6 +17,9 @@
   },
   "include": [
     "packages/catalog/src/**/*.ts",
+    "packages/semantic/src/**/*.ts",
+    "packages/semantic/generated/**/*.ts",
+    "packages/semantic/scripts/**/*.ts",
     "packages/ui/src/**/*.ts",
     "scripts/**/*.ts",
     "tests/**/*.ts",
