@@ -20,9 +20,10 @@ const products = sortByHierarchy(await loadProducts());
         checked against the <code>product.schema.json</code> shipped beside it. Schema version is 1.
       </p>
       <p>
-        <code>dependsOn</code> points at upstream products only. GoliathApp does not list GoliathOmics.
-        GoliathAlign and MethylExtractor do not list GoliathApp or GoliathOmics. GoliathOmics is the
-        product that declares those dependencies.
+        <code>dependsOn</code> points at upstream products only. GoliathApp does not list GoliathOmics or
+        GoliathGroundStation. GoliathAlign and MethylExtractor do not list GoliathApp or GoliathOmics.
+        GoliathOmics and GoliathGroundStation declare their platform dependency; Omics also lists the
+        utilities.
       </p>
       <Hierarchy products={products} />
       <div class="product-grid">
