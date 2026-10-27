@@ -5,6 +5,7 @@ export type ProductAsset = "product.json" | "product.schema.json";
 export const PRODUCT_SOURCES = [
   { owner: "Goliath-Research", repo: "GoliathApp", ref: "main" },
   { owner: "Goliath-Research", repo: "GoliathOmics", ref: "main" },
+  { owner: "Goliath-Research", repo: "GoliathGroundStation", ref: "main" },
   { owner: "Goliath-Research", repo: "GoliathAlign", ref: "main" },
   { owner: "Goliath-Research", repo: "MethylExtractor", ref: "main" },
 ] as const satisfies readonly ProductSource[];

@@ -10,15 +10,15 @@ const products = sortByHierarchy(await loadProducts());
 <Layout
   title="Home"
   documentTitle="Goliath Research Inc"
-  description="Goliath Research Inc: an academy, the GoliathApp platform, GoliathOmics, and custom development."
+  description="Goliath Research Inc: an academy, the GoliathApp platform, GoliathOmics, GoliathGroundStation, and custom development."
 >
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Goliath Research Inc</p>
       <h1>Open platforms for computational science.</h1>
       <p class="lede">
-        The company is four parts: an academy, the GoliathApp platform, the GoliathOmics genomics
-        application, and custom development on that stack.
+        The company is five parts: an academy, the GoliathApp platform, the GoliathOmics genomics
+        application, the GoliathGroundStation launch-ops application, and custom development on that stack.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href={brand.academy}>Academy</a>
@@ -59,8 +59,17 @@ const products = sortByHierarchy(await loadProducts());
           </a>
         </li>
         <li>
-          <a href="/custom-development/">
+          <a href="/products/goliathgroundstation/">
             <span class="part-index">04</span>
+            <span>
+              <h2>GoliathGroundStation</h2>
+              <p>Launch operations and ground-station monitoring on GoliathApp: gateway ingest, OPC fan-out, operator identity.</p>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/custom-development/">
+            <span class="part-index">05</span>
             <span>
               <h2>Custom development</h2>
               <p>Applications, process packs, and integrations built with the published stack.</p>
@@ -76,8 +85,9 @@ const products = sortByHierarchy(await loadProducts());
       <h2 id="software-heading">How the software fits together</h2>
       <p>
         GoliathApp is the platform and the top of the hierarchy. It does not describe the applications
-        built on it. GoliathOmics inherits that platform and uses two standalone utilities, GoliathAlign
-        and MethylExtractor. Those utilities do not depend on GoliathApp or GoliathOmics.
+        built on it. GoliathOmics and GoliathGroundStation inherit that platform. GoliathOmics also uses
+        two standalone utilities, GoliathAlign and MethylExtractor. Those utilities do not depend on
+        GoliathApp or GoliathOmics.
       </p>
       <Hierarchy products={products} />
       <p>

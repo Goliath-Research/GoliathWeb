@@ -9,6 +9,7 @@ interface Props {
 const { products } = Astro.props;
 const platform = requireProduct(products, "goliathapp");
 const omics = requireProduct(products, "goliathomics");
+const ground = requireProduct(products, "goliathgroundstation");
 const align = requireProduct(products, "goliathalign");
 const methyl = requireProduct(products, "methylextractor");
 
@@ -26,14 +27,15 @@ const nodes = [
   { product: platform, className: "node node-platform" },
   { product: align, className: "node node-align" },
   { product: omics, className: "node node-omics" },
+  { product: ground, className: "node node-ground" },
   { product: methyl, className: "node node-methyl" },
 ];
 ---
 
 <figure class="hierarchy">
   <figcaption>
-    GoliathOmics depends on GoliathApp, GoliathAlign, and MethylExtractor. Those three products do not
-    list GoliathOmics.
+    GoliathOmics and GoliathGroundStation depend on GoliathApp. GoliathOmics also depends on GoliathAlign
+    and MethylExtractor. The platform and utilities do not list those applications.
   </figcaption>
   <div class="hierarchy-board">
     {
