@@ -27,14 +27,14 @@ function product(id: string, dependsOn: string[], related: string[] = []): Produ
 function catalog(): Product[] {
   return [
     product("goliathapp", []),
-    product("goliathomics", ["goliathapp", "goliathalign", "methylextractor"], [
+    product("goliathomics", ["goliathapp", "goliathalign", "goliath-extractor"], [
       "goliathapp",
       "goliathalign",
-      "methylextractor",
+      "goliath-extractor",
     ]),
     product("goliathgroundstation", ["goliathapp"], ["goliathapp"]),
     product("goliathalign", []),
-    product("methylextractor", []),
+    product("goliath-extractor", []),
   ];
 }
 

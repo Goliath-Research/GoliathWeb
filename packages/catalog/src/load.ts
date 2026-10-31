@@ -1,9 +1,27 @@
 import { assertHierarchy } from "./hierarchy.ts";
+import { finalizeCatalog } from "./rename.ts";
 import { productAssetUrl, PRODUCT_SOURCES } from "./sources.ts";
 import type { Product, ProductSource } from "./types.ts";
 import { assertSchema, normalizeProduct } from "./validate.ts";
 
+const EXTRACTOR_SOURCE: ProductSource = {
+  owner: "Goliath-Research",
+  repo: "GoliathExtractor",
+  ref: "main",
+};
+
+const EXTRACTOR_LEGACY_SOURCE: ProductSource = {
+  owner: "Goliath-Research",
+  repo: "MethylExtractor",
+  ref: "main",
+};
+
 let cached: Promise<Product[]> | undefined;
+
+function isNotFoundError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error);
+  return message.includes("failed: 404");
+}
 
 async function fetchText(url: string): Promise<string> {
   let lastError: unknown;
@@ -54,10 +72,24 @@ async function loadSource(source: ProductSource): Promise<Product> {
   return normalizeProduct(document, source, label);
 }
 
+async function loadExtractorProduct(): Promise<Product> {
+  try {
+    return await loadSource(EXTRACTOR_SOURCE);
+  } catch (error) {
+    if (!isNotFoundError(error)) throw error;
+    return loadSource(EXTRACTOR_LEGACY_SOURCE);
+  }
+}
+
 async function fetchProducts(): Promise<Product[]> {
-  const products = await Promise.all(PRODUCT_SOURCES.map((source) => loadSource(source)));
-  assertHierarchy(products);
-  return products;
+  const standardSources = PRODUCT_SOURCES.filter((source) => source.repo !== EXTRACTOR_SOURCE.repo);
+  const products = await Promise.all([
+    ...standardSources.map((source) => loadSource(source)),
+    loadExtractorProduct(),
+  ]);
+  const finalized = finalizeCatalog(products);
+  assertHierarchy(finalized);
+  return finalized;
 }
 
 export function loadProducts(): Promise<Product[]> {

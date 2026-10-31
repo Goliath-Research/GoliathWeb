@@ -32,7 +32,7 @@ export function emptyDependencyNote(id: string): string {
     case "goliathgroundstation":
       return "This application extends GoliathApp and declares that dependency in dependsOn.";
     case "goliathalign":
-    case "methylextractor":
+    case "goliath-extractor":
       return "This utility is standalone. It does not declare a dependency on GoliathApp or GoliathOmics.";
     default:
       return "This product declares no upstream catalog products.";
