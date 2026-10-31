@@ -8,5 +8,6 @@ export default defineConfig({
   integrations: [sitemap()],
   redirects: {
     "/products/methylextractor/": "/products/goliath-extractor/",
+    "/products/goliathextractor/": "/products/goliath-extractor/",
   },
 });
