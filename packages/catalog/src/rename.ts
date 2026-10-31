@@ -40,7 +40,7 @@ export function applyGoliathExtractorCatalogRename(product: Product): Product {
     ...base,
     links: {
       repository: GOLIATH_EXTRACTOR_REPOSITORY,
-      docs: GOLIATH_EXTRACTOR_DOCS,
+      docs: base.links.docs === null ? null : GOLIATH_EXTRACTOR_DOCS,
       website: base.links.website,
     },
   };
