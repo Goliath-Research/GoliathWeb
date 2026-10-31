@@ -7,13 +7,13 @@ import Layout from "../../layouts/Layout.astro";
 const products = await loadProducts();
 const omics = requireProduct(products, "goliathomics");
 const align = requireProduct(products, "goliathalign");
-const methyl = requireProduct(products, "methylextractor");
+const extractor = requireProduct(products, "goliath-extractor");
 const processPacks = omics.features.find((feature) => /process pack/i.test(feature.title));
 ---
 
 <Layout
   title="GoliathOmics"
-  description="GoliathOmics is the genomics application on GoliathApp. It uses GoliathAlign, MethylExtractor, and process packs."
+  description={`GoliathOmics is the genomics application on GoliathApp. It uses GoliathAlign, ${extractor.name}, and process packs.`}
 >
   <section class="hero">
     <div class="wrap">
@@ -23,9 +23,9 @@ const processPacks = omics.features.find((feature) => /process pack/i.test(featu
       <p>
         GoliathOmics inherits GoliathApp and uses the standalone utilities
         <a href={`/products/${align.id}/`}>{align.name}</a> and
-        <a href={`/products/${methyl.id}/`}>{methyl.name}</a>, plus process packs.
-        MethylExtractor is a performance-optimized fork of MethylDackel, focused on extraction.
-        GoliathAlign and MethylExtractor do not require or know about GoliathApp or GoliathOmics, and
+        <a href={`/products/${extractor.id}/`}>{extractor.name}</a>, plus process packs.
+        {extractor.name} is a performance-optimized fork of MethylDackel, focused on extraction.
+        GoliathAlign and {extractor.name} do not require or know about GoliathApp or GoliathOmics, and
         GoliathApp does not reference GoliathOmics or GoliathGroundStation.
       </p>
       <Markdown source={omics.description} />
@@ -40,7 +40,7 @@ const processPacks = omics.features.find((feature) => /process pack/i.test(featu
       <div class="cta-row">
         <a class="btn btn-primary" href={`/products/${omics.id}/`}>Product page</a>
         <a class="btn btn-ghost" href={`/products/${align.id}/`}>{align.name}</a>
-        <a class="btn btn-ghost" href={`/products/${methyl.id}/`}>{methyl.name}</a>
+        <a class="btn btn-ghost" href={`/products/${extractor.id}/`}>{extractor.name}</a>
         <a class="btn btn-ghost" href={brand.hosts.omics}>omics.goliathresearch.com</a>
       </div>
       <p class="note">

@@ -6,4 +6,7 @@ export default defineConfig({
   base: "/",
   trailingSlash: "always",
   integrations: [sitemap()],
+  redirects: {
+    "/products/methylextractor/": "/products/goliath-extractor/",
+  },
 });

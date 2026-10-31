@@ -11,7 +11,7 @@ const platform = requireProduct(products, "goliathapp");
 const omics = requireProduct(products, "goliathomics");
 const ground = requireProduct(products, "goliathgroundstation");
 const align = requireProduct(products, "goliathalign");
-const methyl = requireProduct(products, "methylextractor");
+const extractor = requireProduct(products, "goliath-extractor");
 
 function dependencyNote(product: Product): string {
   if (product.dependsOn.length === 0) {
@@ -28,14 +28,14 @@ const nodes = [
   { product: align, className: "node node-align" },
   { product: omics, className: "node node-omics" },
   { product: ground, className: "node node-ground" },
-  { product: methyl, className: "node node-methyl" },
+  { product: extractor, className: "node node-methyl" },
 ];
 ---
 
 <figure class="hierarchy">
   <figcaption>
     GoliathOmics and GoliathGroundStation depend on GoliathApp. GoliathOmics also depends on GoliathAlign
-    and MethylExtractor. The platform and utilities do not list those applications.
+    and GoliathExtractor. The platform and utilities do not list those applications.
   </figcaption>
   <div class="hierarchy-board">
     {
