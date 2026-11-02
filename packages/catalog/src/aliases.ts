@@ -1,6 +1,6 @@
 import type { Product } from "./types.ts";
 
-/** Id in GoliathExtractor/.goliath/product.json (hyphenated). */
+/** Canonical catalog id for GoliathExtractor (its manifest now uses goliathextractor; normalized here). */
 export const GOLIATH_EXTRACTOR_ID = "goliath-extractor";
 
 /** Id GoliathOmics uses in dependsOn (Omics schema disallows hyphens in dependency refs). */
@@ -22,6 +22,7 @@ export function canonicalProductId(id: string): string {
 export function normalizeCatalogReferences(products: readonly Product[]): Product[] {
   return products.map((product) => ({
     ...product,
+    id: canonicalProductId(product.id),
     dependsOn: product.dependsOn.map(canonicalProductId),
     related: product.related.map(canonicalProductId),
   }));
