@@ -1,0 +1,27 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="GoliathFactory"
+  documentTitle="GoliathFactory"
+  description="GoliathFactory is planned: manufacturing operations on GoliathApp for precision shops and food processors."
+>
+  <section class="hero">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">factory.goliathresearch.com</p>
+      <h1>GoliathFactory</h1>
+      <p class="lede">GoliathFactory is planned. It will be manufacturing operations on GoliathApp for precision shops and food processors.</p>
+      <p>
+        It will run work orders and signed travelers, QC inspections, lot genealogy, nonconformances and CAPA,
+        inventory and purchasing, and maintenance, with an audit trail and e-signatures on every step.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/Goliath-Research/GoliathFactory/blob/main/docs/plan.md" rel="noreferrer">Read the plan</a>
+        <a class="btn btn-ghost" href={`${brand.hosts.www}/products/goliathfactory/`}>Product page</a>
+        <a class="btn btn-ghost" href="https://github.com/Goliath-Research/GoliathFactory" rel="noreferrer">Repository</a>
+      </div>
+    </div>
+  </section>
+</Layout>

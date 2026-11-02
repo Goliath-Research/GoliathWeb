@@ -9,5 +9,6 @@ export const brand = {
     app: "https://app.goliathresearch.com",
     omics: "https://omics.goliathresearch.com",
     crop: "https://crop.goliathresearch.com",
+    factory: "https://factory.goliathresearch.com",
   },
 } as const;

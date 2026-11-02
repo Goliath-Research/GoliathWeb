@@ -31,6 +31,7 @@ export function emptyDependencyNote(id: string): string {
     case "goliathomics":
     case "goliathgroundstation":
     case "goliathcrop":
+    case "goliathfactory":
       return "This application extends GoliathApp and declares that dependency in dependsOn.";
     case "goliathalign":
     case "goliath-extractor":

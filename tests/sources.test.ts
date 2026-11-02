@@ -10,6 +10,7 @@ test("product manifests are fetched from the six public main branches", () => {
       "https://raw.githubusercontent.com/Goliath-Research/GoliathOmics/main/.goliath/product.json",
       "https://raw.githubusercontent.com/Goliath-Research/GoliathGroundStation/main/.goliath/product.json",
       "https://raw.githubusercontent.com/Goliath-Research/GoliathCrop/main/.goliath/product.json",
+      "https://raw.githubusercontent.com/Goliath-Research/GoliathFactory/main/.goliath/product.json",
       "https://raw.githubusercontent.com/Goliath-Research/GoliathAlign/main/.goliath/product.json",
       "https://raw.githubusercontent.com/Goliath-Research/GoliathExtractor/main/.goliath/product.json",
     ],
