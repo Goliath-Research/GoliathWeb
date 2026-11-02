@@ -1,12 +1,13 @@
 # GoliathWeb
 
-Static sites for Goliath Research Inc, in one repository. Each site builds on its own. `sites/www` is published to GitHub Pages. `sites/app` and `sites/omics` are not published. This repository does not change DNS.
+Static sites for Goliath Research Inc, in one repository. Each site builds on its own. `sites/www` is published to GitHub Pages. `sites/app`, `sites/omics`, and `sites/crop` are not published. This repository does not change DNS.
 
 | Host | Directory | What it is |
 | --- | --- | --- |
 | [www.goliathresearch.com](https://www.goliathresearch.com) | `sites/www` | Global company site. Built now. |
 | [app.goliathresearch.com](https://app.goliathresearch.com) | `sites/app` | GoliathApp platform site. Placeholder. |
 | [omics.goliathresearch.com](https://omics.goliathresearch.com) | `sites/omics` | GoliathOmics site. Placeholder. |
+| [crop.goliathresearch.com](https://crop.goliathresearch.com) | `sites/crop` | GoliathCrop site. Placeholder (product planned). |
 
 [academy.goliathresearch.com](https://academy.goliathresearch.com) stays on the academy host. This repo only links to it.
 
@@ -20,6 +21,7 @@ packages/ui/         shared layout, header, footer, and CSS
 sites/www/           company site
 sites/app/           platform-site placeholder
 sites/omics/         omics-site placeholder
+sites/crop/          crop-site placeholder
 ```
 
 npm workspaces install from the repository root. A host must run the build there. Setting the project root to `sites/www` skips the lockfile and the shared packages.
@@ -74,21 +76,22 @@ npm run build --workspace @goliath/www
 npm run dev --workspace @goliath/www
 ```
 
-Dev ports: www `4321`, app `4322`, omics `4323`. Build output:
+Dev ports: www `4321`, app `4322`, omics `4323`, crop `4324`. Build output:
 
 - `sites/www/dist`
 - `sites/app/dist`
 - `sites/omics/dist`
+- `sites/crop/dist`
 
-`app` and `omics` do not fetch product manifests. `www` fails the build if a manifest is missing or invalid.
+`app`, `omics`, and `crop` do not fetch product manifests. `www` fails the build if a manifest is missing or invalid.
 
 ## Continuous integration
 
-`.github/workflows/ci.yml` installs, validates the six manifests, lints, tests, typechecks, and builds all three sites. It does not deploy.
+`.github/workflows/ci.yml` installs, validates the six manifests, lints, tests, typechecks, and builds all four sites. It does not deploy.
 
 ## Publishing www
 
-`.github/workflows/pages.yml` builds `@goliath/www` and deploys `sites/www/dist` to GitHub Pages on every push to `main`, and when the workflow is run by hand. It does not build or deploy `sites/app` or `sites/omics`. Pages on this repository is already set to GitHub Actions. The workflow does not change that setting.
+`.github/workflows/pages.yml` builds `@goliath/www` and deploys `sites/www/dist` to GitHub Pages on every push to `main`, and when the workflow is run by hand. It does not build or deploy `sites/app`, `sites/omics`, or `sites/crop`. Pages on this repository is already set to GitHub Actions. The workflow does not change that setting.
 
 `sites/www` is built for the custom domain at the root:
 
@@ -101,7 +104,7 @@ Asset URLs are root paths such as `/_astro/...`. They match `https://www.goliath
 
 The www build needs outbound HTTPS to `https://raw.githubusercontent.com`. Do not add a token.
 
-`app.goliathresearch.com` and `omics.goliathresearch.com` stay unpublished. One GitHub repository has one Pages site and one custom domain, so those two hostnames need a separate host when they are ready. Leave `academy.goliathresearch.com` where it is.
+`app.goliathresearch.com`, `omics.goliathresearch.com`, and `crop.goliathresearch.com` stay unpublished. One GitHub repository has one Pages site and one custom domain, so those three hostnames need a separate host when they are ready. Leave `academy.goliathresearch.com` where it is.
 
 ### DNS
 

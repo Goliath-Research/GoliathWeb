@@ -1,0 +1,27 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="GoliathCrop"
+  documentTitle="GoliathCrop"
+  description="GoliathCrop is planned: crop management on GoliathApp for farms and research stations."
+>
+  <section class="hero">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">crop.goliathresearch.com</p>
+      <h1>GoliathCrop</h1>
+      <p class="lede">GoliathCrop is planned. It will be crop management on GoliathApp for commercial farms and research stations.</p>
+      <p>
+        It will record fields and plots, seasons, operations, inputs, sensor readings, weather, satellite and drone
+        imagery, and research trials, with workers for imagery processing, irrigation scheduling, and alerts.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/Goliath-Research/GoliathCrop/blob/main/docs/plan.md" rel="noreferrer">Read the plan</a>
+        <a class="btn btn-ghost" href={`${brand.hosts.www}/products/goliathcrop/`}>Product page</a>
+        <a class="btn btn-ghost" href="https://github.com/Goliath-Research/GoliathCrop" rel="noreferrer">Repository</a>
+      </div>
+    </div>
+  </section>
+</Layout>

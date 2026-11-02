@@ -30,7 +30,7 @@ jobs:
       - name: Install
         run: npm ci
 
-      # www only. app and omics stay unpublished.
+      # www only. app, omics, and crop stay unpublished.
       # Do not use actions/configure-pages: it would set base to /GoliathWeb/.
       - name: Build www
         run: npm run build --workspace @goliath/www

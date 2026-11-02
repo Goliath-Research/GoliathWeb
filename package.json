@@ -21,7 +21,8 @@
     "check:semantic-types": "npm run check:semantic-types --workspace @goliath/semantic",
     "dev:www": "npm run dev --workspace @goliath/www",
     "dev:app": "npm run dev --workspace @goliath/app",
-    "dev:omics": "npm run dev --workspace @goliath/omics"
+    "dev:omics": "npm run dev --workspace @goliath/omics",
+    "dev:crop": "npm run dev --workspace @goliath/crop"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
