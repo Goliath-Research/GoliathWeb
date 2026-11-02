@@ -33,6 +33,7 @@ function catalog(): Product[] {
       "goliath-extractor",
     ]),
     product("goliathgroundstation", ["goliathapp"], ["goliathapp"]),
+    product("goliathcrop", ["goliathapp"], ["goliathapp"]),
     product("goliathalign", []),
     product("goliath-extractor", []),
   ];
@@ -43,7 +44,7 @@ test("accepts the catalog hierarchy", () => {
   assertHierarchy(products);
   assert.deepEqual(
     consumersOf(products, "goliathapp").map((item) => item.id),
-    ["goliathomics", "goliathgroundstation"],
+    ["goliathomics", "goliathgroundstation", "goliathcrop"],
   );
   assert.deepEqual(
     consumersOf(products, "goliathalign").map((item) => item.id),

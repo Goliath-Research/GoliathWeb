@@ -26,27 +26,29 @@ npm workspaces install from the repository root. A host must run the build there
 
 ## Company site
 
-`sites/www` describes the company in five parts:
+`sites/www` describes the company in six parts:
 
 1. Academy, linking to https://academy.goliathresearch.com
 2. GoliathApp: role-based access control, workflow engine, user-defined actions, distributed workers
 3. GoliathOmics: inherits GoliathApp and uses GoliathAlign, GoliathExtractor, and process packs
 4. GoliathGroundStation: launch-ops and ground-station monitoring on GoliathApp
-5. Custom development
+5. GoliathCrop (planned): crop management for farms and research stations on GoliathApp
+6. Custom development
 
 Product pages under `/products/<id>/` are generated at build time from the public `main` branch of:
 
 - Goliath-Research/GoliathApp
 - Goliath-Research/GoliathOmics
 - Goliath-Research/GoliathGroundStation
+- Goliath-Research/GoliathCrop
 - Goliath-Research/GoliathAlign
 - Goliath-Research/GoliathExtractor
 
 For each repository the build reads `.goliath/product.json` and `.goliath/product.schema.json`, checks the document against that schema, and requires `schemaVersion` 1. The fields used on the page are `id`, `name`, `tagline`, `description`, `category`, `features`, `links` (`repository`, `docs`, `website`), `related`, `dependsOn`, `license`, and `status`.
 
-`dependsOn` is the hierarchy. GoliathApp is the top and does not name products that use it. GoliathOmics depends on GoliathApp, GoliathAlign, and GoliathExtractor. GoliathGroundStation depends on GoliathApp only. GoliathAlign and GoliathExtractor are standalone and do not depend on GoliathApp or GoliathOmics. GoliathExtractor is a performance-optimized fork of MethylDackel, focused on extraction. A page’s “Used by” list is computed from other manifests; it is not a field those upstream products declare.
+`dependsOn` is the hierarchy. GoliathApp is the top and does not name products that use it. GoliathOmics depends on GoliathApp, GoliathAlign, and GoliathExtractor. GoliathGroundStation and GoliathCrop depend on GoliathApp only. GoliathAlign and GoliathExtractor are standalone and do not depend on GoliathApp or GoliathOmics. GoliathExtractor is a performance-optimized fork of MethylDackel, focused on extraction. A page’s “Used by” list is computed from other manifests; it is not a field those upstream products declare.
 
-All five repositories are public, open source, and documented with MkDocs. The manifests do not yet link a published docs site. Product pages link the MkDocs source in the repository until GitHub Pages for those docs exists.
+All six repositories are public, open source, and documented with MkDocs. The manifests do not yet link a published docs site. Product pages link the MkDocs source in the repository until GitHub Pages for those docs exists.
 
 `/deployments/` is reserved for real GoliathApp and GoliathOmics deployment write-ups, including the current GoliathOmics test setup (remote workers, gateway, database, and long-term storage). That example is not written here.
 
@@ -82,7 +84,7 @@ Dev ports: www `4321`, app `4322`, omics `4323`. Build output:
 
 ## Continuous integration
 
-`.github/workflows/ci.yml` installs, validates the five manifests, lints, tests, typechecks, and builds all three sites. It does not deploy.
+`.github/workflows/ci.yml` installs, validates the six manifests, lints, tests, typechecks, and builds all three sites. It does not deploy.
 
 ## Publishing www
 

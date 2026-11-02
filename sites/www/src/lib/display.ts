@@ -30,6 +30,7 @@ export function emptyDependencyNote(id: string): string {
       return "GoliathApp is the top of the hierarchy. It declares no upstream product and does not list the applications that extend it.";
     case "goliathomics":
     case "goliathgroundstation":
+    case "goliathcrop":
       return "This application extends GoliathApp and declares that dependency in dependsOn.";
     case "goliathalign":
     case "goliath-extractor":
