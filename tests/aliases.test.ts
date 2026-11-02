@@ -46,6 +46,7 @@ test("normalizeCatalogReferences aligns GoliathOmics dependsOn with hierarchy", 
       GOLIATH_EXTRACTOR_OMICS_REF,
     ]),
     product("goliathgroundstation", ["goliathapp"], ["goliathapp"]),
+    product("goliathcrop", ["goliathapp"], ["goliathapp"]),
     product("goliathalign", []),
     product(GOLIATH_EXTRACTOR_ID, []),
   ]);
@@ -55,4 +56,9 @@ test("normalizeCatalogReferences aligns GoliathOmics dependsOn with hierarchy", 
   assert.deepEqual(omics.dependsOn, ["goliathapp", "goliathalign", GOLIATH_EXTRACTOR_ID]);
 
   assertHierarchy(products);
+});
+
+test("normalizeCatalogReferences maps the GoliathExtractor manifest id to the canonical id", () => {
+  const [extractor] = normalizeCatalogReferences([product(GOLIATH_EXTRACTOR_OMICS_REF, [])]);
+  assert.equal(extractor?.id, GOLIATH_EXTRACTOR_ID);
 });

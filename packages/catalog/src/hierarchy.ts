@@ -10,14 +10,14 @@ export interface HierarchyRule {
 /**
  * Catalog direction is dependsOn only.
  * GoliathApp is the platform and does not name products that extend it.
- * GoliathOmics and GoliathGroundStation depend on the platform; Omics also uses the utilities.
+ * GoliathOmics, GoliathGroundStation, and GoliathCrop depend on the platform; Omics also uses the utilities.
  * GoliathAlign and GoliathExtractor do not depend on GoliathApp or GoliathOmics.
  */
 export const HIERARCHY: readonly HierarchyRule[] = [
   {
     id: "goliathapp",
     dependsOn: [],
-    mustNotReference: ["goliathomics", "goliathgroundstation", "goliathalign", "goliath-extractor"],
+    mustNotReference: ["goliathomics", "goliathgroundstation", "goliathcrop", "goliathalign", "goliath-extractor"],
   },
   {
     id: "goliathomics",
@@ -26,6 +26,11 @@ export const HIERARCHY: readonly HierarchyRule[] = [
   },
   {
     id: "goliathgroundstation",
+    dependsOn: ["goliathapp"],
+    mustNotReference: [],
+  },
+  {
+    id: "goliathcrop",
     dependsOn: ["goliathapp"],
     mustNotReference: [],
   },
