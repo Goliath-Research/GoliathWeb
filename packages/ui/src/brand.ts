@@ -8,5 +8,6 @@ export const brand = {
     www: "https://www.goliathresearch.com",
     app: "https://app.goliathresearch.com",
     omics: "https://omics.goliathresearch.com",
+    crop: "https://crop.goliathresearch.com",
   },
 } as const;
