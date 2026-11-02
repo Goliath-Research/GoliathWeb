@@ -11,6 +11,7 @@ const platform = requireProduct(products, "goliathapp");
 const omics = requireProduct(products, "goliathomics");
 const ground = requireProduct(products, "goliathgroundstation");
 const crop = requireProduct(products, "goliathcrop");
+const factory = requireProduct(products, "goliathfactory");
 const align = requireProduct(products, "goliathalign");
 const extractor = requireProduct(products, "goliath-extractor");
 
@@ -30,13 +31,14 @@ const nodes = [
   { product: omics, className: "node node-omics" },
   { product: ground, className: "node node-ground" },
   { product: crop, className: "node node-crop" },
+  { product: factory, className: "node node-factory" },
   { product: extractor, className: "node node-methyl" },
 ];
 ---
 
 <figure class="hierarchy">
   <figcaption>
-    GoliathOmics, GoliathGroundStation, and GoliathCrop depend on GoliathApp. GoliathOmics also depends on GoliathAlign
+    GoliathOmics, GoliathGroundStation, GoliathCrop, and GoliathFactory depend on GoliathApp. GoliathOmics also depends on GoliathAlign
     and GoliathExtractor. The platform and utilities do not list those applications.
   </figcaption>
   <div class="hierarchy-board">

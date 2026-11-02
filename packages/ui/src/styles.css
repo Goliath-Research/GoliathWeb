@@ -260,10 +260,10 @@ p { margin: 0 0 1rem; }
 
 .hierarchy-board {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   grid-template-areas:
-    ". platform platform platform ."
-    "align omics ground crop methyl";
+    ". platform platform platform platform ."
+    "align omics ground crop factory methyl";
   gap: 0.9rem;
 }
 
@@ -280,6 +280,7 @@ p { margin: 0 0 1rem; }
 .node-omics { grid-area: omics; border-color: var(--accent); }
 .node-ground { grid-area: ground; border-color: var(--accent); }
 .node-crop { grid-area: crop; border-color: var(--accent); }
+.node-factory { grid-area: factory; border-color: var(--accent); }
 .node-methyl { grid-area: methyl; }
 
 .node a {
@@ -374,6 +375,7 @@ dl.fields dd { margin: 0; color: var(--muted); }
       "align"
       "ground"
       "crop"
+      "factory"
       "methyl";
   }
 

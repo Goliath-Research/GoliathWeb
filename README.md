@@ -1,6 +1,6 @@
 # GoliathWeb
 
-Static sites for Goliath Research Inc, in one repository. Each site builds on its own. `sites/www` is published to GitHub Pages. `sites/app`, `sites/omics`, and `sites/crop` are not published. This repository does not change DNS.
+Static sites for Goliath Research Inc, in one repository. Each site builds on its own. `sites/www` is published to GitHub Pages. `sites/app`, `sites/omics`, `sites/crop`, and `sites/factory` are not published. This repository does not change DNS.
 
 | Host | Directory | What it is |
 | --- | --- | --- |
@@ -8,6 +8,7 @@ Static sites for Goliath Research Inc, in one repository. Each site builds on it
 | [app.goliathresearch.com](https://app.goliathresearch.com) | `sites/app` | GoliathApp platform site. Placeholder. |
 | [omics.goliathresearch.com](https://omics.goliathresearch.com) | `sites/omics` | GoliathOmics site. Placeholder. |
 | [crop.goliathresearch.com](https://crop.goliathresearch.com) | `sites/crop` | GoliathCrop site. Placeholder (product planned). |
+| [factory.goliathresearch.com](https://factory.goliathresearch.com) | `sites/factory` | GoliathFactory site. Placeholder (product planned). |
 
 [academy.goliathresearch.com](https://academy.goliathresearch.com) stays on the academy host. This repo only links to it.
 
@@ -22,20 +23,22 @@ sites/www/           company site
 sites/app/           platform-site placeholder
 sites/omics/         omics-site placeholder
 sites/crop/          crop-site placeholder
+sites/factory/       factory-site placeholder
 ```
 
 npm workspaces install from the repository root. A host must run the build there. Setting the project root to `sites/www` skips the lockfile and the shared packages.
 
 ## Company site
 
-`sites/www` describes the company in six parts:
+`sites/www` describes the company in seven parts:
 
 1. Academy, linking to https://academy.goliathresearch.com
 2. GoliathApp: role-based access control, workflow engine, user-defined actions, distributed workers
 3. GoliathOmics: inherits GoliathApp and uses GoliathAlign, GoliathExtractor, and process packs
 4. GoliathGroundStation: launch-ops and ground-station monitoring on GoliathApp
 5. GoliathCrop (planned): crop management for farms and research stations on GoliathApp
-6. Custom development
+6. GoliathFactory (planned): manufacturing operations (travelers, QC, lot genealogy, NCR/CAPA) on GoliathApp
+7. Custom development
 
 Product pages under `/products/<id>/` are generated at build time from the public `main` branch of:
 
@@ -43,12 +46,13 @@ Product pages under `/products/<id>/` are generated at build time from the publi
 - Goliath-Research/GoliathOmics
 - Goliath-Research/GoliathGroundStation
 - Goliath-Research/GoliathCrop
+- Goliath-Research/GoliathFactory
 - Goliath-Research/GoliathAlign
 - Goliath-Research/GoliathExtractor
 
 For each repository the build reads `.goliath/product.json` and `.goliath/product.schema.json`, checks the document against that schema, and requires `schemaVersion` 1. The fields used on the page are `id`, `name`, `tagline`, `description`, `category`, `features`, `links` (`repository`, `docs`, `website`), `related`, `dependsOn`, `license`, and `status`.
 
-`dependsOn` is the hierarchy. GoliathApp is the top and does not name products that use it. GoliathOmics depends on GoliathApp, GoliathAlign, and GoliathExtractor. GoliathGroundStation and GoliathCrop depend on GoliathApp only. GoliathAlign and GoliathExtractor are standalone and do not depend on GoliathApp or GoliathOmics. GoliathExtractor is a performance-optimized fork of MethylDackel, focused on extraction. A page’s “Used by” list is computed from other manifests; it is not a field those upstream products declare.
+`dependsOn` is the hierarchy. GoliathApp is the top and does not name products that use it. GoliathOmics depends on GoliathApp, GoliathAlign, and GoliathExtractor. GoliathGroundStation, GoliathCrop, and GoliathFactory depend on GoliathApp only. GoliathAlign and GoliathExtractor are standalone and do not depend on GoliathApp or GoliathOmics. GoliathExtractor is a performance-optimized fork of MethylDackel, focused on extraction. A page’s “Used by” list is computed from other manifests; it is not a field those upstream products declare.
 
 All six repositories are public, open source, and documented with MkDocs. The manifests do not yet link a published docs site. Product pages link the MkDocs source in the repository until GitHub Pages for those docs exists.
 
@@ -76,14 +80,15 @@ npm run build --workspace @goliath/www
 npm run dev --workspace @goliath/www
 ```
 
-Dev ports: www `4321`, app `4322`, omics `4323`, crop `4324`. Build output:
+Dev ports: www `4321`, app `4322`, omics `4323`, crop `4324`, factory `4325`. Build output:
 
 - `sites/www/dist`
 - `sites/app/dist`
 - `sites/omics/dist`
 - `sites/crop/dist`
+- `sites/factory/dist`
 
-`app`, `omics`, and `crop` do not fetch product manifests. `www` fails the build if a manifest is missing or invalid.
+`app`, `omics`, `crop`, and `factory` do not fetch product manifests. `www` fails the build if a manifest is missing or invalid.
 
 ## Continuous integration
 
@@ -91,7 +96,7 @@ Dev ports: www `4321`, app `4322`, omics `4323`, crop `4324`. Build output:
 
 ## Publishing www
 
-`.github/workflows/pages.yml` builds `@goliath/www` and deploys `sites/www/dist` to GitHub Pages on every push to `main`, and when the workflow is run by hand. It does not build or deploy `sites/app`, `sites/omics`, or `sites/crop`. Pages on this repository is already set to GitHub Actions. The workflow does not change that setting.
+`.github/workflows/pages.yml` builds `@goliath/www` and deploys `sites/www/dist` to GitHub Pages on every push to `main`, and when the workflow is run by hand. It does not build or deploy `sites/app`, `sites/omics`, `sites/crop`, or `sites/factory`. Pages on this repository is already set to GitHub Actions. The workflow does not change that setting.
 
 `sites/www` is built for the custom domain at the root:
 
@@ -104,7 +109,7 @@ Asset URLs are root paths such as `/_astro/...`. They match `https://www.goliath
 
 The www build needs outbound HTTPS to `https://raw.githubusercontent.com`. Do not add a token.
 
-`app.goliathresearch.com`, `omics.goliathresearch.com`, and `crop.goliathresearch.com` stay unpublished. One GitHub repository has one Pages site and one custom domain, so those three hostnames need a separate host when they are ready. Leave `academy.goliathresearch.com` where it is.
+`app.goliathresearch.com`, `omics.goliathresearch.com`, `crop.goliathresearch.com`, and `factory.goliathresearch.com` stay unpublished. One GitHub repository has one Pages site and one custom domain, so those four hostnames need a separate host when they are ready. Leave `academy.goliathresearch.com` where it is.
 
 ### DNS
 
