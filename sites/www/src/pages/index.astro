@@ -10,16 +10,16 @@ const products = sortByHierarchy(await loadProducts());
 <Layout
   title="Home"
   documentTitle="Goliath Research Inc"
-  description="Goliath Research Inc: an academy, the GoliathApp platform, GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, and custom development."
+  description="Goliath Research Inc: an academy, the GoliathApp platform, GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, GoliathRealty, and custom development."
 >
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Goliath Research Inc</p>
       <h1>Open platforms for computational science.</h1>
       <p class="lede">
-        The company is seven parts: an academy, the GoliathApp platform, the GoliathOmics genomics
+        The company is eight parts: an academy, the GoliathApp platform, the GoliathOmics genomics
         application, the GoliathGroundStation launch-ops application, the planned GoliathCrop crop-management
-        application, the planned GoliathFactory manufacturing-operations application, and custom development on that stack.
+        application, the planned GoliathFactory manufacturing-operations application, the planned GoliathRealty real estate brokerage application, and custom development on that stack.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href={brand.academy}>Academy</a>
@@ -87,8 +87,17 @@ const products = sortByHierarchy(await loadProducts());
           </a>
         </li>
         <li>
-          <a href="/custom-development/">
+          <a href="/products/goliathrealty/">
             <span class="part-index">07</span>
+            <span>
+              <h2>GoliathRealty</h2>
+              <p>Planned real estate brokerage operations on GoliathApp for brokers, agents, and clients: transactions, compliance, escrow, commissions, leads.</p>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/custom-development/">
+            <span class="part-index">08</span>
             <span>
               <h2>Custom development</h2>
               <p>Applications, process packs, and integrations built with the published stack.</p>
@@ -104,7 +113,7 @@ const products = sortByHierarchy(await loadProducts());
       <h2 id="software-heading">How the software fits together</h2>
       <p>
         GoliathApp is the platform and the top of the hierarchy. It does not describe the applications
-        built on it. GoliathOmics, GoliathGroundStation, GoliathCrop, and GoliathFactory inherit that platform. GoliathOmics also uses
+        built on it. GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, and GoliathRealty inherit that platform. GoliathOmics also uses
         two standalone utilities, GoliathAlign and GoliathExtractor. Those utilities do not depend on
         GoliathApp or GoliathOmics.
       </p>

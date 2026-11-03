@@ -48,6 +48,7 @@ test("normalizeCatalogReferences aligns GoliathOmics dependsOn with hierarchy", 
     product("goliathgroundstation", ["goliathapp"], ["goliathapp"]),
     product("goliathcrop", ["goliathapp"], ["goliathapp"]),
     product("goliathfactory", ["goliathapp"], ["goliathapp"]),
+    product("goliathrealty", ["goliathapp"], ["goliathapp"]),
     product("goliathalign", []),
     product(GOLIATH_EXTRACTOR_ID, []),
   ]);

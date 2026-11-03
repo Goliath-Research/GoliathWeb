@@ -10,5 +10,6 @@ export const brand = {
     omics: "https://omics.goliathresearch.com",
     crop: "https://crop.goliathresearch.com",
     factory: "https://factory.goliathresearch.com",
+    realty: "https://realty.goliathresearch.com",
   },
 } as const;
