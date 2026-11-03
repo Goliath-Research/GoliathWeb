@@ -23,7 +23,8 @@
     "dev:app": "npm run dev --workspace @goliath/app",
     "dev:omics": "npm run dev --workspace @goliath/omics",
     "dev:crop": "npm run dev --workspace @goliath/crop",
-    "dev:factory": "npm run dev --workspace @goliath/factory"
+    "dev:factory": "npm run dev --workspace @goliath/factory",
+    "dev:realty": "npm run dev --workspace @goliath/realty"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

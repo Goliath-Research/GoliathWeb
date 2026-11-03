@@ -1,0 +1,27 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="GoliathRealty"
+  documentTitle="GoliathRealty"
+  description="GoliathRealty is planned: real estate brokerage operations on GoliathApp for small Florida brokerages."
+>
+  <section class="hero">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">realty.goliathresearch.com</p>
+      <h1>GoliathRealty</h1>
+      <p class="lede">GoliathRealty is planned. It will be real estate brokerage operations on GoliathApp for brokers, agents, and their clients.</p>
+      <p>
+        It will run listings, leads, showings, offers and transactions with broker compliance review, the escrow ledger,
+        commission plans and agent licensing, AI-assisted lead collection from sanctioned channels, and a client portal.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/Goliath-Research/GoliathRealty/blob/main/docs/plan.md" rel="noreferrer">Read the plan</a>
+        <a class="btn btn-ghost" href={`${brand.hosts.www}/products/goliathrealty/`}>Product page</a>
+        <a class="btn btn-ghost" href="https://github.com/Goliath-Research/GoliathRealty" rel="noreferrer">Repository</a>
+      </div>
+    </div>
+  </section>
+</Layout>

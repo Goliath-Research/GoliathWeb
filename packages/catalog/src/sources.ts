@@ -8,6 +8,7 @@ export const PRODUCT_SOURCES = [
   { owner: "Goliath-Research", repo: "GoliathGroundStation", ref: "main" },
   { owner: "Goliath-Research", repo: "GoliathCrop", ref: "main" },
   { owner: "Goliath-Research", repo: "GoliathFactory", ref: "main" },
+  { owner: "Goliath-Research", repo: "GoliathRealty", ref: "main" },
   { owner: "Goliath-Research", repo: "GoliathAlign", ref: "main" },
   { owner: "Goliath-Research", repo: "GoliathExtractor", ref: "main" },
 ] as const satisfies readonly ProductSource[];

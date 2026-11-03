@@ -21,8 +21,8 @@ const products = sortByHierarchy(await loadProducts());
       </p>
       <p>
         <code>dependsOn</code> points at upstream products only. GoliathApp does not list GoliathOmics,
-        GoliathGroundStation, GoliathCrop, or GoliathFactory. GoliathAlign and GoliathExtractor do not list GoliathApp or GoliathOmics.
-        GoliathOmics, GoliathGroundStation, GoliathCrop, and GoliathFactory declare their platform dependency; Omics also lists the
+        GoliathGroundStation, GoliathCrop, GoliathFactory, or GoliathRealty. GoliathAlign and GoliathExtractor do not list GoliathApp or GoliathOmics.
+        GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, and GoliathRealty declare their platform dependency; Omics also lists the
         utilities.
       </p>
       <Hierarchy products={products} />
