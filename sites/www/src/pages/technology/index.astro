@@ -9,7 +9,12 @@ import {
 } from "@goliath/semantic";
 import { brand } from "@goliath/ui/brand";
 import Markdown from "../../components/Markdown.astro";
-import { categoryLabel, statusClass, statusLabel } from "../../lib/display.ts";
+import {
+  productDomainLabel,
+  productUserSummary,
+  statusClass,
+  statusLabel,
+} from "../../lib/display.ts";
 import Layout from "../../layouts/Layout.astro";
 
 const products = sortByHierarchy(await loadProducts());
@@ -192,10 +197,10 @@ const omicsSummary = omicsVocabularySummary();
       <table class="semantic-table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Summary</th>
+            <th>Product</th>
+            <th>Domain</th>
+            <th>Availability &amp; Status</th>
+            <th>What It Does</th>
           </tr>
         </thead>
         <tbody>
@@ -207,17 +212,13 @@ const omicsSummary = omicsVocabularySummary();
                     <a href={`/products/${product.id}/`}>{product.name}</a>
                   </strong>
                 </td>
-                <td>{categoryLabel(product.category)}</td>
+                <td>{productDomainLabel(product.id, product.category)}</td>
                 <td>
                   <span class:list={["chip", statusClass(product.status, product.id)]}>
                     {statusLabel(product.status, product.id)}
                   </span>
                 </td>
-                <td>
-                  {product.id === "goliathalign"
-                    ? `${product.tagline} Ready and working for linear and pangenome alignment on NVIDIA and AMD platforms, with continuous development.`
-                    : product.tagline}
-                </td>
+                <td>{productUserSummary(product.id, product.tagline)}</td>
               </tr>
             ))
           }

@@ -1,34 +1,100 @@
 ---
-import { loadProducts, sortByHierarchy } from "@goliath/catalog";
+import { loadProducts, requireProduct, sortByHierarchy } from "@goliath/catalog";
 import Hierarchy from "../../components/Hierarchy.astro";
 import ProductCard from "../../components/ProductCard.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const products = sortByHierarchy(await loadProducts());
+const align = requireProduct(products, "goliathalign");
+const extractor = requireProduct(products, "goliath-extractor");
+const platform = requireProduct(products, "goliathapp");
+const omics = requireProduct(products, "goliathomics");
+const ground = requireProduct(products, "goliathgroundstation");
+const crop = requireProduct(products, "goliathcrop");
+const factory = requireProduct(products, "goliathfactory");
+const realty = requireProduct(products, "goliathrealty");
+
+const readyTools = [align, extractor];
+const activePlatformAndApps = [platform, omics, ground];
+const plannedApps = [crop, factory, realty];
 ---
 
 <Layout
-  title="Products"
-  description="Product pages generated from the public Goliath product.json manifests."
+  title="Products & Software"
+  description="Explore Goliath Research software: ready-to-use GPU sequence alignment and methylation extraction tools, the GoliathApp platform initiative, and domain applications."
 >
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Catalog</p>
-      <h1>Products</h1>
+      <p class="eyebrow">Software Catalog</p>
+      <h1>Products &amp; Software</h1>
       <p class="lede">
-        Each page is built from that repository’s <code>.goliath/product.json</code> on the main branch,
-        checked against the <code>product.schema.json</code> shipped beside it. Schema version is 1.
+        Our open-source software spans standalone bioinformatics tools that are ready to use today, the
+        reusable <strong>GoliathApp</strong> platform and reference applications in active development, and
+        planned domain applications open for industry pilots.
       </p>
-      <p>
-        <code>dependsOn</code> points at upstream products only. GoliathApp does not list GoliathOmics,
-        GoliathGroundStation, GoliathCrop, GoliathFactory, or GoliathRealty. GoliathAlign and GoliathExtractor do not list GoliathApp or GoliathOmics.
-        GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, and GoliathRealty declare their platform dependency; Omics also lists the
-        utilities.
-      </p>
-      <Hierarchy products={products} />
-      <div class="product-grid">
-        {products.map((product) => <ProductCard product={product} />)}
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#ready-tools">Ready-to-use tools</a>
+        <a class="btn btn-ghost" href="#active-platform">Platform &amp; reference apps</a>
+        <a class="btn btn-ghost" href="#planned-apps">Planned domain apps</a>
+        <a class="btn btn-ghost" href="/partnerships/">Propose a pilot</a>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="ready-tools" aria-labelledby="ready-heading">
+    <div class="wrap">
+      <div class="status-group-header">
+        <h2 id="ready-heading">Ready to Use Today — Standalone Bioinformatics &amp; Compute Tools</h2>
+        <span class="chip status-live">Available Now</span>
+      </div>
+      <p class="prose">
+        These standalone command-line utilities do not require the GoliathApp platform. Researchers and
+        bioinformatics teams can build and run them directly on their own hardware or cluster today:
+      </p>
+      <div class="product-grid">
+        {readyTools.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="active-platform" aria-labelledby="active-heading">
+    <div class="wrap">
+      <div class="status-group-header">
+        <h2 id="active-heading">In Active Development — Core Platform &amp; Reference Applications</h2>
+        <span class="chip status-early">Active Development · Pilot Ready</span>
+      </div>
+      <p class="prose">
+        We are developing <strong>GoliathApp</strong> as a reusable platform for data-intensive applications,
+        validated through reference applications in genomics (<strong>GoliathOmics</strong>) and telemetry
+        operations (<strong>GoliathGroundStation</strong>):
+      </p>
+      <div class="product-grid">
+        {activePlatformAndApps.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="planned-apps" aria-labelledby="planned-heading">
+    <div class="wrap">
+      <div class="status-group-header">
+        <h2 id="planned-heading">Planned Domain Applications — Seeking Pilot Partners</h2>
+        <span class="chip status-planned">Planned · Seeking Pilot Partners</span>
+      </div>
+      <p class="prose">
+        These domain applications are planned adaptations built on <strong>GoliathApp</strong>. We publish
+        their specifications and seek industry or research partners with focused operational problems suitable
+        for a small, measurable pilot:
+      </p>
+      <div class="product-grid">
+        {plannedApps.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="architecture-heading">
+    <div class="wrap">
+      <h2 id="architecture-heading">How the software stack fits together</h2>
+      <Hierarchy products={products} />
     </div>
   </section>
 </Layout>

@@ -1,22 +1,95 @@
 ---
 import type { Product } from "@goliath/catalog";
-import { categoryLabel, statusClass, statusLabel } from "../lib/display.ts";
+import {
+  productDomainLabel,
+  productUserSummary,
+  statusClass,
+  statusLabel,
+} from "../lib/display.ts";
+import { safeUrl } from "../lib/markdown.ts";
 
 interface Props {
   product: Product;
 }
 
 const { product } = Astro.props;
+const repository = product.links.repository ? safeUrl(product.links.repository) : undefined;
+const topFeatures = product.features.slice(0, 3);
 ---
 
-<article class="card">
-  <p class="meta-row">
-    <span class="chip">{categoryLabel(product.category)}</span>
-    <span class:list={["chip", statusClass(product.status, product.id)]}>
-      {statusLabel(product.status, product.id)}
-    </span>
-  </p>
-  <h2><a href={`/products/${product.id}/`}>{product.name}</a></h2>
-  <p>{product.tagline}</p>
-  <p><a href={`/products/${product.id}/`}>Product page</a></p>
+<article class="card product-card">
+  <div>
+    <p class="meta-row">
+      <span class="chip">{productDomainLabel(product.id, product.category)}</span>
+      <span class:list={["chip", statusClass(product.status, product.id)]}>
+        {statusLabel(product.status, product.id)}
+      </span>
+    </p>
+    <h2><a href={`/products/${product.id}/`}>{product.name}</a></h2>
+    <p class="product-card-summary">{productUserSummary(product.id, product.tagline)}</p>
+    {
+      topFeatures.length > 0 && (
+        <ul class="product-card-features">
+          {topFeatures.map((feature) => (
+            <li>
+              <strong>{feature.title}:</strong> {feature.description}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+  <div class="cta-row product-card-actions">
+    <a class="btn btn-primary" href={`/products/${product.id}/`}>Product details</a>
+    {
+      repository && (
+        <a class="btn btn-ghost" href={repository} rel="noreferrer">
+          GitHub repository
+        </a>
+      )
+    }
+  </div>
 </article>
+
+<style>
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.35rem 1.4rem 1.45rem;
+  }
+
+  .product-card h2 {
+    font-size: 1.55rem;
+    margin: 0.25rem 0 0.5rem;
+    overflow-wrap: break-word;
+  }
+
+  .product-card h2 a {
+    text-decoration: none;
+  }
+
+  .product-card-summary {
+    margin: 0 0 0.85rem;
+    color: var(--ink);
+  }
+
+  .product-card-features {
+    margin: 0;
+    padding-left: 1.15rem;
+    font-size: 0.94rem;
+    color: var(--muted);
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .product-card-features strong {
+    color: var(--ink);
+  }
+
+  .product-card-actions {
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--line);
+  }
+</style>
