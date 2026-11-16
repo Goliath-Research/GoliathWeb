@@ -102,12 +102,14 @@ const omicsSummary = omicsVocabularySummary();
           <p><a href="/omics/">Explore {omics.name}</a></p>
         </article>
         <article class="card">
-          <p class="eyebrow">Standalone Compute Utilities</p>
+          <p class="eyebrow">Standalone Compute Utilities · Ready Now</p>
           <h3>{align.name} &amp; {extractor.name}</h3>
           <p>
-            Standalone open-source C/C++ utilities invoked by worker pipelines—{align.name} for sequence
-            alignment and {extractor.name} (a performance-optimized fork of MethylDackel) for methylation
-            extraction.
+            <strong>{align.name}</strong> is ready and working today for both <strong>linear</strong> and{" "}
+            <strong>pangenome</strong> alignment on <strong>NVIDIA</strong> and <strong>AMD</strong> GPU
+            platforms, with continuous development to implement additional features and expand to other
+            platforms. <strong>{extractor.name}</strong> is a performance-optimized fork of MethylDackel
+            focused on methylation extraction.
           </p>
           <p>
             <a href={`/products/${align.id}/`}>{align.name}</a> ·{" "}
@@ -207,9 +209,15 @@ const omicsSummary = omicsVocabularySummary();
                 </td>
                 <td>{categoryLabel(product.category)}</td>
                 <td>
-                  <span class:list={["chip", statusClass(product.status)]}>{statusLabel(product.status)}</span>
+                  <span class:list={["chip", statusClass(product.status, product.id)]}>
+                    {statusLabel(product.status, product.id)}
+                  </span>
                 </td>
-                <td>{product.tagline}</td>
+                <td>
+                  {product.id === "goliathalign"
+                    ? `${product.tagline} Ready and working for linear and pangenome alignment on NVIDIA and AMD platforms, with continuous development.`
+                    : product.tagline}
+                </td>
               </tr>
             ))
           }

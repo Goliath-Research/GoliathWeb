@@ -251,53 +251,112 @@ p { margin: 0 0 1rem; }
 
 .parts p { margin: 0; color: var(--muted); }
 
-.hierarchy { margin: 1.5rem 0; }
+.hierarchy { margin: 1.75rem 0; }
 
 .hierarchy figcaption {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   color: var(--muted);
 }
 
-.hierarchy-board {
+.hierarchy-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hierarchy-tier {
+  background: rgba(255, 252, 248, 0.55);
+  border: 1px solid var(--line);
+  border-radius: 1.15rem;
+  padding: 1rem 1.15rem 1.2rem;
+}
+
+.hierarchy-tier-label {
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hierarchy-connector {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0.1rem 0;
+}
+
+.hierarchy-row {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  grid-template-areas:
-    ". platform platform platform platform platform ."
-    "align omics ground crop factory realty methyl";
-  gap: 0.9rem;
+  gap: 1rem;
+}
+
+.hierarchy-row-platform {
+  grid-template-columns: 1fr;
+}
+
+.hierarchy-row-two {
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.hierarchy-row-three {
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
 }
 
 .node {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 1rem;
-  padding: 1rem 1.05rem;
+  border-radius: 0.9rem;
+  padding: 1.15rem 1.25rem;
   box-shadow: var(--shadow);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
-.node-platform { grid-area: platform; }
-.node-align { grid-area: align; }
-.node-omics { grid-area: omics; border-color: var(--accent); }
-.node-ground { grid-area: ground; border-color: var(--accent); }
-.node-crop { grid-area: crop; border-color: var(--accent); }
-.node-factory { grid-area: factory; border-color: var(--accent); }
-.node-realty { grid-area: realty; border-color: var(--accent); }
-.node-methyl { grid-area: methyl; }
+.node-platform {
+  border-top: 3px solid var(--accent);
+}
 
-.node a {
+.node-app-active {
+  border-left: 3px solid var(--accent);
+}
+
+.node-app-planned {
+  border-style: dashed;
+}
+
+.node-utility {
+  border-left: 3px solid var(--accent-ink);
+}
+
+.node-title {
+  display: inline-block;
   font-family: var(--serif);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
+  line-height: 1.25;
   text-decoration: none;
+  margin-bottom: 0.35rem;
 }
 
-.node .meta { margin: 0.2rem 0 0.45rem; color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.node-tagline {
+  margin: 0 0 0.45rem;
+  font-size: 0.98rem;
+}
+
+.node-dep {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
 
 .node p:last-child { margin: 0; }
 
 .product-grid, .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(18.5rem, 1fr));
+  gap: 1rem;
 }
 
 .card {
@@ -306,6 +365,8 @@ p { margin: 0 0 1rem; }
   border-radius: 1rem;
   padding: 1.1rem 1.15rem 1.2rem;
   box-shadow: var(--shadow);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .card h2 { font-size: 1.45rem; }
@@ -446,17 +507,9 @@ dl.fields dd { margin: 0; color: var(--muted); }
 .source-note { color: var(--muted); font-size: 0.95rem; }
 
 @media (max-width: 800px) {
-  .hierarchy-board {
+  .hierarchy-row-two,
+  .hierarchy-row-three {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "platform"
-      "omics"
-      "align"
-      "ground"
-      "crop"
-      "factory"
-      "realty"
-      "methyl";
   }
 
   dl.fields div { grid-template-columns: 1fr; gap: 0.15rem; }

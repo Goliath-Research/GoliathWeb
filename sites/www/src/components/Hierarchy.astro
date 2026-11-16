@@ -20,41 +20,120 @@ function dependencyNote(product: Product): string {
   if (product.dependsOn.length === 0) {
     return product.id === "goliathapp"
       ? "Top of the hierarchy. Declares no upstream product."
-      : "Standalone. Declares no upstream catalog product.";
+      : "Standalone utility. Declares no upstream catalog product.";
   }
   const names = product.dependsOn.map((id) => requireProduct(products, id).name);
   return `Depends on ${formatList(names)}.`;
 }
 
-const nodes = [
-  { product: platform, className: "node node-platform" },
-  { product: align, className: "node node-align" },
-  { product: omics, className: "node node-omics" },
-  { product: ground, className: "node node-ground" },
-  { product: crop, className: "node node-crop" },
-  { product: factory, className: "node node-factory" },
-  { product: realty, className: "node node-realty" },
-  { product: extractor, className: "node node-methyl" },
+const activeApps = [
+  { product: omics, className: "node node-app-active" },
+  { product: ground, className: "node node-app-active" },
+];
+
+const plannedApps = [
+  { product: crop, className: "node node-app-planned" },
+  { product: factory, className: "node node-app-planned" },
+  { product: realty, className: "node node-app-planned" },
+];
+
+const standaloneUtilities = [
+  { product: align, className: "node node-utility" },
+  { product: extractor, className: "node node-utility" },
 ];
 ---
 
 <figure class="hierarchy">
   <figcaption>
-    GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, and GoliathRealty depend on GoliathApp. GoliathOmics also depends on GoliathAlign
-    and GoliathExtractor. The platform and utilities do not list those applications.
+    GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, and GoliathRealty extend GoliathApp.
+    GoliathOmics also integrates the standalone utilities GoliathAlign and GoliathExtractor.
   </figcaption>
-  <div class="hierarchy-board">
-    {
-      nodes.map(({ product, className }) => (
-        <article class:list={[className]}>
+
+  <div class="hierarchy-tiers">
+    <div class="hierarchy-tier">
+      <p class="hierarchy-tier-label">01 · Core Platform</p>
+      <div class="hierarchy-row hierarchy-row-platform">
+        <article class="node node-platform">
           <p class="meta-row">
-            <span class:list={["chip", statusClass(product.status)]}>{statusLabel(product.status)}</span>
+            <span class="chip">{categoryLabel(platform.category)}</span>
+            <span class:list={["chip", statusClass(platform.status, platform.id)]}>
+              {statusLabel(platform.status, platform.id)}
+            </span>
           </p>
-          <a href={`/products/${product.id}/`}>{product.name}</a>
-          <p class="meta">{categoryLabel(product.category)}</p>
-          <p>{dependencyNote(product)}</p>
+          <a class="node-title" href={`/products/${platform.id}/`}>{platform.name}</a>
+          <p class="node-tagline">{platform.tagline}</p>
+          <p class="node-dep">{dependencyNote(platform)}</p>
         </article>
-      ))
-    }
+      </div>
+    </div>
+
+    <div class="hierarchy-connector" aria-hidden="true">↓ Extended by domain applications</div>
+
+    <div class="hierarchy-tier">
+      <p class="hierarchy-tier-label">02 · Reference Applications on GoliathApp (In Active Development)</p>
+      <div class="hierarchy-row hierarchy-row-two">
+        {
+          activeApps.map(({ product, className }) => (
+            <article class:list={[className]}>
+              <p class="meta-row">
+                <span class="chip">{categoryLabel(product.category)}</span>
+                <span class:list={["chip", statusClass(product.status, product.id)]}>
+                  {statusLabel(product.status, product.id)}
+                </span>
+              </p>
+              <a class="node-title" href={`/products/${product.id}/`}>{product.name}</a>
+              <p class="node-tagline">{product.tagline}</p>
+              <p class="node-dep">{dependencyNote(product)}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="hierarchy-tier">
+      <p class="hierarchy-tier-label">03 · Planned Domain Applications on GoliathApp</p>
+      <div class="hierarchy-row hierarchy-row-three">
+        {
+          plannedApps.map(({ product, className }) => (
+            <article class:list={[className]}>
+              <p class="meta-row">
+                <span class="chip">{categoryLabel(product.category)}</span>
+                <span class:list={["chip", statusClass(product.status, product.id)]}>
+                  {statusLabel(product.status, product.id)}
+                </span>
+              </p>
+              <a class="node-title" href={`/products/${product.id}/`}>{product.name}</a>
+              <p class="node-tagline">{product.tagline}</p>
+              <p class="node-dep">{dependencyNote(product)}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="hierarchy-connector" aria-hidden="true">
+      + Standalone utilities integrated by GoliathOmics
+    </div>
+
+    <div class="hierarchy-tier">
+      <p class="hierarchy-tier-label">04 · Standalone Compute Utilities (No Platform Dependency)</p>
+      <div class="hierarchy-row hierarchy-row-two">
+        {
+          standaloneUtilities.map(({ product, className }) => (
+            <article class:list={[className]}>
+              <p class="meta-row">
+                <span class="chip">{categoryLabel(product.category)}</span>
+                <span class:list={["chip", statusClass(product.status, product.id)]}>
+                  {statusLabel(product.status, product.id)}
+                </span>
+              </p>
+              <a class="node-title" href={`/products/${product.id}/`}>{product.name}</a>
+              <p class="node-tagline">{product.tagline}</p>
+              <p class="node-dep">{dependencyNote(product)}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </figure>

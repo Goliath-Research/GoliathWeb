@@ -21,12 +21,15 @@ export function categoryLabel(category: string): string {
   return CATEGORY_LABELS[category] ?? category;
 }
 
-export function statusLabel(status: string): string {
+export function statusLabel(status: string, productId?: string): string {
+  if (productId === "goliathalign") {
+    return "Ready · Continuous Development";
+  }
   return STATUS_LABELS[status] ?? status;
 }
 
-export function statusClass(status: string): string {
-  if (LIVE_STATUSES.has(status)) return "status-live";
+export function statusClass(status: string, productId?: string): string {
+  if (productId === "goliathalign" || LIVE_STATUSES.has(status)) return "status-live";
   if (EARLY_STATUSES.has(status)) return "status-early";
   if (PLANNED_STATUSES.has(status)) return "status-planned";
   return "status-unknown";

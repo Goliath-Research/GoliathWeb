@@ -12,7 +12,9 @@ const { product } = Astro.props;
 <article class="card">
   <p class="meta-row">
     <span class="chip">{categoryLabel(product.category)}</span>
-    <span class:list={["chip", statusClass(product.status)]}>{statusLabel(product.status)}</span>
+    <span class:list={["chip", statusClass(product.status, product.id)]}>
+      {statusLabel(product.status, product.id)}
+    </span>
   </p>
   <h2><a href={`/products/${product.id}/`}>{product.name}</a></h2>
   <p>{product.tagline}</p>

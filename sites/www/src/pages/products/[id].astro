@@ -44,11 +44,22 @@ const docsSource = repository ? `${repository.replace(/\/$/, "")}/tree/${product
     <div class="wrap">
       <p class="kicker">
         <span class="chip">{categoryLabel(product.category)}</span>
-        <span class:list={["chip", statusClass(product.status)]}>{statusLabel(product.status)}</span>
+        <span class:list={["chip", statusClass(product.status, product.id)]}>
+          {statusLabel(product.status, product.id)}
+        </span>
         <span class="chip">License: {product.license}</span>
       </p>
       <h1>{product.name}</h1>
       <p class="lede">{product.tagline}</p>
+      {
+        product.id === "goliathalign" && (
+          <p class="prose">
+            <strong>Current status:</strong> GoliathAlign is ready and working today for linear and pangenome
+            sequence alignment on both <strong>NVIDIA</strong> and <strong>AMD</strong> platforms, with
+            continuous development to implement additional features and expand to other hardware platforms.
+          </p>
+        )
+      }
       <Markdown source={product.description} />
       <div class="cta-row">
         {repository && <a class="btn btn-primary" href={repository} rel="noreferrer">Repository</a>}

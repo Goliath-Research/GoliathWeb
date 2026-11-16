@@ -23,9 +23,10 @@ const processPacks = omics.features.find((feature) => /process pack/i.test(featu
       <p class="prose">
         <strong>{omics.name}</strong> is our primary scientific reference application validating the{" "}
         <a href="/technology/">GoliathApp platform</a> against real-world bioinformatics workflows. It extends
-        GoliathApp and integrates the standalone open-source utilities{" "}
-        <a href={`/products/${align.id}/`}>{align.name}</a> and{" "}
-        <a href={`/products/${extractor.id}/`}>{extractor.name}</a> (a performance-optimized fork of
+        GoliathApp and integrates two ready, standalone open-source utilities:{" "}
+        <a href={`/products/${align.id}/`}>{align.name}</a> (working for linear and pangenome alignment on
+        NVIDIA and AMD platforms, with continuous development for additional features and hardware platforms)
+        and <a href={`/products/${extractor.id}/`}>{extractor.name}</a> (a performance-optimized fork of
         MethylDackel focused on methylation extraction), plus domain process packs.
       </p>
       <p class="prose">
