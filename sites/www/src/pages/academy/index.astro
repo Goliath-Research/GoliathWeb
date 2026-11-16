@@ -4,22 +4,129 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Academy"
-  description="The Goliath Research academy is hosted at academy.goliathresearch.com."
+  title="Goliath Research Academy"
+  description="Goliath Research Academy provides practical, notebook-based education in Python, statistics, and machine learning with concise explanations and executable examples."
 >
   <section class="hero">
-    <div class="wrap wrap-narrow">
-      <p class="eyebrow">01 — Academy</p>
-      <h1>Academy</h1>
+    <div class="wrap">
+      <p class="eyebrow">Educational Offering · Available Today</p>
+      <h1>Goliath Research Academy</h1>
       <p class="lede">
-        Courses are hosted at academy.goliathresearch.com. This website does not run the classroom.
+        Goliath Research Academy provides practical, notebook-based education in Python, statistics, and
+        machine learning. Learners work through concise explanations and executable examples, with self-paced
+        and instructor-assisted learning options.
       </p>
-      <p>
-        The academy courses are self-paced, built from e-books and Jupyter notebooks, and delivered
-        on LearnWorlds.
+      <p class="prose">
+        Our learning materials combine structured e-books, executable Jupyter notebooks, and real-world
+        datasets—allowing students, entrepreneurs, and working professionals to study core mathematical and
+        computational concepts and apply them directly in code. Courses and assessments are hosted on our
+        learning portal at <a href={brand.academy}>academy.goliathresearch.com</a>.
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary" href={brand.academy}>academy.goliathresearch.com</a>
+        <a class="btn btn-primary" href={brand.academy}>Go to academy.goliathresearch.com</a>
+        <a class="btn btn-ghost" href="/partnerships/">Education partnerships</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="method-heading">
+    <div class="wrap">
+      <h2 id="method-heading">How we teach</h2>
+      <p class="prose">
+        Instead of passive video lectures, Goliath Research Academy is built around active, hands-on
+        computation:
+      </p>
+      <div class="feature-grid">
+        <article class="card">
+          <h3>Concise Theory &amp; E-Books</h3>
+          <p>
+            Focused written explanations introduce statistical and machine-learning principles clearly,
+            giving learners a durable reference without filler.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Executable Jupyter Notebooks</h3>
+          <p>
+            Every topic is paired with runnable Python notebooks so learners can inspect implementations,
+            modify parameters, test edge cases, and experiment directly.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Real-World Examples &amp; Assessments</h3>
+          <p>
+            Worked examples and structured assessments connect theory to practical scientific, business, and
+            engineering datasets.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Self-Paced &amp; Instructor-Assisted</h3>
+          <p>
+            Learners can study independently on their own schedule or work through material with instructor
+            guidance in structured cohorts.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="curriculum-heading">
+    <div class="wrap">
+      <h2 id="curriculum-heading">Subject areas &amp; courses</h2>
+      <p class="prose">
+        Our curriculum focuses on practical fluency in Python and its scientific computing ecosystem—chosen for
+        its clear syntax, reproducible notebook workflows, and comprehensive libraries for statistics and
+        machine learning.
+      </p>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker"><span class="chip status-live">Core Foundation</span></p>
+          <h3>Practical Python &amp; Data Science</h3>
+          <p>
+            Python programming fundamentals, data structures, numerical computing, data cleaning, and
+            visualization for reproducible data analysis.
+          </p>
+        </article>
+        <article class="card">
+          <p class="kicker"><span class="chip status-live">Core Course</span></p>
+          <h3>Computational Statistics</h3>
+          <p>
+            Exploratory data analysis, probability distributions, sampling, hypothesis testing, confidence
+            intervals, and simulation-based inference in Python.
+          </p>
+        </article>
+        <article class="card">
+          <p class="kicker"><span class="chip status-live">Core Course</span></p>
+          <h3>Supervised Learning</h3>
+          <p>
+            Regression and classification models, regularization, decision trees and ensemble methods,
+            cross-validation, and feature engineering on real-world problems.
+          </p>
+        </article>
+        <article class="card">
+          <p class="kicker"><span class="chip status-live">Core Course</span></p>
+          <h3>Unsupervised &amp; Deep Learning</h3>
+          <p>
+            Clustering, dimensionality reduction, representation learning, and neural network architectures
+            for structured and unstructured datasets.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="band">
+        <h2>For schools, training programs, and education partners</h2>
+        <p>
+          We work with educators, accelerators, and training organizations on course delivery, cohort
+          instruction, and curriculum licensing. We are also exploring how our software platform can support
+          practical learning and applied student projects.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/partnerships/">Discuss an education partnership</a>
+          <a class="btn btn-ghost" href={brand.academy}>Visit academy.goliathresearch.com</a>
+        </div>
       </div>
     </div>
   </section>

@@ -6,7 +6,7 @@ import {
   type Product,
 } from "@goliath/catalog";
 import Markdown from "../../components/Markdown.astro";
-import { categoryLabel, emptyDependencyNote, statusClass } from "../../lib/display.ts";
+import { categoryLabel, emptyDependencyNote, statusClass, statusLabel } from "../../lib/display.ts";
 import { safeUrl } from "../../lib/markdown.ts";
 import Layout from "../../layouts/Layout.astro";
 
@@ -44,7 +44,7 @@ const docsSource = repository ? `${repository.replace(/\/$/, "")}/tree/${product
     <div class="wrap">
       <p class="kicker">
         <span class="chip">{categoryLabel(product.category)}</span>
-        <span class:list={["chip", statusClass(product.status)]}>{product.status}</span>
+        <span class:list={["chip", statusClass(product.status)]}>{statusLabel(product.status)}</span>
         <span class="chip">License: {product.license}</span>
       </p>
       <h1>{product.name}</h1>

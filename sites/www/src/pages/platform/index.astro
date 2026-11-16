@@ -18,32 +18,43 @@ const highlighted = platform.features.filter((feature) =>
 
 <Layout
   title="GoliathApp"
-  description="GoliathApp is the Goliath Research platform: access control, workflows, user-defined actions, and distributed workers."
+  description="GoliathApp is the Goliath Research platform initiative: role-based access control, workflow orchestration, user-defined actions, and distributed workers."
 >
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">02 — Platform</p>
+      <p class="eyebrow">Platform Initiative · {platform.name}</p>
       <h1>{platform.name}</h1>
-      <p class="lede">{platform.tagline}</p>
-      <p>
-        GoliathApp provides role-based access control, a workflow engine, user-defined actions, and
-        distributed workers. Applications such as GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, and GoliathRealty extend it. The
-        platform does not describe those applications and does not depend on them.
+      <p class="lede">
+        We are developing a reusable platform for building data-intensive applications, with the goal of
+        adapting shared capabilities to the needs of different scientific and industrial domains.
+      </p>
+      <p class="prose">
+        <strong>{platform.name}</strong> provides role-based access control, a workflow engine, declarative
+        semantic schemas, user-defined actions, and distributed workers. Reference applications such as{" "}
+        <a href="/omics/">GoliathOmics</a> and{" "}
+        <a href="/products/goliathgroundstation/">GoliathGroundStation</a>—along with planned domain
+        adaptations (<a href="/products/goliathcrop/">GoliathCrop</a>,{" "}
+        <a href="/products/goliathfactory/">GoliathFactory</a>, and{" "}
+        <a href="/products/goliathrealty/">GoliathRealty</a>)—extend it without coupling the core platform to any
+        single industry.
       </p>
       <Markdown source={platform.description} />
       <div class="cta-row">
-        <a class="btn btn-primary" href="/products/goliathapp/">Product page</a>
+        <a class="btn btn-primary" href="/technology/">Technology &amp; demonstration</a>
+        <a class="btn btn-ghost" href="/partnerships/">Propose a pilot</a>
+        <a class="btn btn-ghost" href="/products/goliathapp/">Product page</a>
         <a class="btn btn-ghost" href={platform.links.repository} rel="noreferrer">Repository</a>
         <a class="btn btn-ghost" href={brand.hosts.app}>app.goliathresearch.com</a>
       </div>
       <p class="note">
-        The platform host is a separate site. In this repository it is still a placeholder, not a running product.
+        The platform host (<code>app.goliathresearch.com</code>) is a static documentation and schema preview
+        site in this repository, not a hosted multi-tenant SaaS portal.
       </p>
     </div>
   </section>
   <section class="section">
     <div class="wrap">
-      <h2>From the manifest</h2>
+      <h2>Verified capabilities from the manifest</h2>
       <div class="feature-grid">
         {
           highlighted.map((feature) => (

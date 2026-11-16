@@ -1,5 +1,6 @@
 const LIVE_STATUSES = new Set(["active", "stable", "ready"]);
 const EARLY_STATUSES = new Set(["alpha", "beta"]);
+const PLANNED_STATUSES = new Set(["planned", "draft"]);
 
 const CATEGORY_LABELS: Record<string, string> = {
   platform: "Platform",
@@ -7,13 +8,27 @@ const CATEGORY_LABELS: Record<string, string> = {
   component: "Component",
 };
 
+const STATUS_LABELS: Record<string, string> = {
+  active: "Active",
+  stable: "Stable",
+  ready: "Ready",
+  alpha: "In Development (Alpha)",
+  beta: "In Development (Beta)",
+  planned: "Planned",
+};
+
 export function categoryLabel(category: string): string {
   return CATEGORY_LABELS[category] ?? category;
+}
+
+export function statusLabel(status: string): string {
+  return STATUS_LABELS[status] ?? status;
 }
 
 export function statusClass(status: string): string {
   if (LIVE_STATUSES.has(status)) return "status-live";
   if (EARLY_STATUSES.has(status)) return "status-early";
+  if (PLANNED_STATUSES.has(status)) return "status-planned";
   return "status-unknown";
 }
 

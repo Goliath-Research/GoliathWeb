@@ -1,0 +1,236 @@
+---
+import { loadProducts, requireProduct, sortByHierarchy } from "@goliath/catalog";
+import {
+  DEMO_ORGANIZATION_ROWS,
+  listCoreSemanticRequests,
+  omicsVocabularySummary,
+  organizationSummary,
+  renderOrganizationTable,
+} from "@goliath/semantic";
+import { brand } from "@goliath/ui/brand";
+import Markdown from "../../components/Markdown.astro";
+import { categoryLabel, statusClass, statusLabel } from "../../lib/display.ts";
+import Layout from "../../layouts/Layout.astro";
+
+const products = sortByHierarchy(await loadProducts());
+const platform = requireProduct(products, "goliathapp");
+const omics = requireProduct(products, "goliathomics");
+const ground = requireProduct(products, "goliathgroundstation");
+const align = requireProduct(products, "goliathalign");
+const extractor = requireProduct(products, "goliath-extractor");
+
+const orgSummary = organizationSummary();
+const coreRequests = listCoreSemanticRequests();
+const organizationTableHtml = renderOrganizationTable(DEMO_ORGANIZATION_ROWS);
+const omicsSummary = omicsVocabularySummary();
+---
+
+<Layout
+  title="Technology & Platform"
+  description="We are developing a reusable platform for building data-intensive applications, adapting shared capabilities to scientific and industrial domains."
+>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Platform Initiative · Development Status &amp; Architecture</p>
+      <h1>Technology &amp; Platform Initiative</h1>
+      <p class="lede">
+        We are developing a reusable platform for building data-intensive applications, with the goal of
+        adapting shared capabilities to the needs of different scientific and industrial domains.
+      </p>
+      <p class="prose">
+        Across scientific research, agriculture, and industrial operations, teams repeatedly need the same
+        foundational software machinery: multi-tenant identity and role-based access control, structured data
+        and action vocabularies, multi-step workflow orchestration, and distributed worker execution.
+        <strong>{platform.name}</strong> implements that shared foundation so domain applications do not have to
+        rebuild it from scratch.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/partnerships/">Propose a pilot or validation workflow</a>
+        <a class="btn btn-ghost" href="/products/goliathapp/">GoliathApp manifest</a>
+        <a class="btn btn-ghost" href={platform.links.repository} rel="noreferrer">GoliathApp repository</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="capabilities-heading">
+    <div class="wrap">
+      <h2 id="capabilities-heading">Verified platform capabilities ({platform.name})</h2>
+      <p class="prose">
+        The capabilities below come directly from the public <code>Goliath-Research/GoliathApp</code> repository
+        manifest and reflect our current implementation:
+      </p>
+      <Markdown source={platform.description} />
+      <div class="feature-grid">
+        {
+          platform.features.map((feature) => (
+            <article class="card">
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="usecase-heading">
+    <div class="wrap">
+      <h2 id="usecase-heading">Concrete use case: Genomics &amp; bioinformatics ({omics.name})</h2>
+      <p class="prose">
+        To validate the platform against a demanding data-intensive workload, our primary reference application
+        is <strong><a href="/omics/">{omics.name}</a></strong>. Bioinformatics pipelines require ingesting large
+        sequencing files, executing compute-heavy alignment and methylation extraction steps on remote workers,
+        and tracking provenance under strict access controls.
+      </p>
+      <div class="pillar-grid">
+        <article class="card">
+          <p class="eyebrow">Platform Layer</p>
+          <h3>{platform.name}</h3>
+          <p>
+            Handles organization and project permissions, dispatches workflow jobs to remote compute workers,
+            and records structured execution state.
+          </p>
+          <p><a href="/platform/">Platform details</a></p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Domain Application</p>
+          <h3>{omics.name}</h3>
+          <p>
+            Extends {platform.name} with genomics schemas, {omicsSummary.omicsActionCount} registered
+            <code>omics</code>-namespace actions, and domain process packs.
+          </p>
+          <p><a href="/omics/">Explore {omics.name}</a></p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Standalone Compute Utilities</p>
+          <h3>{align.name} &amp; {extractor.name}</h3>
+          <p>
+            Standalone open-source C/C++ utilities invoked by worker pipelines—{align.name} for sequence
+            alignment and {extractor.name} (a performance-optimized fork of MethylDackel) for methylation
+            extraction.
+          </p>
+          <p>
+            <a href={`/products/${align.id}/`}>{align.name}</a> ·{" "}
+            <a href={`/products/${extractor.id}/`}>{extractor.name}</a>
+          </p>
+        </article>
+      </div>
+      <p class="prose" style="margin-top: 1.25rem;">
+        A second operational validation application,{" "}
+        <strong><a href={`/products/${ground.id}/`}>{ground.name}</a></strong>, applies the same{" "}
+        {platform.name} foundation to launch operations and ground-station telemetry monitoring (gateway ingest,
+        OPC fan-out, and operator identity).
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="demo-heading">
+    <div class="wrap">
+      <h2 id="demo-heading">Build-time demonstration: Semantic &amp; action catalogs</h2>
+      <p class="prose">
+        Both <code>GoliathApp</code> and <code>GoliathOmics</code> publish machine-readable semantic and action
+        catalogs (<code>schemas/semantic/catalog.json</code> and <code>schemas/actions/catalog.json</code>). At
+        build time, this site validates and renders typed views directly from those catalogs:
+      </p>
+      <div class="pathway-grid">
+        <article class="card">
+          <p class="eyebrow">GoliathApp Core Semantic Schema</p>
+          <h3>Entity: {orgSummary.displayName} (<code>{orgSummary.schemaId}</code>)</h3>
+          <p>{orgSummary.description}</p>
+          <p class="note">
+            Storage relation: <code>{orgSummary.storageRelation}</code> · Attributes:{" "}
+            <strong>{orgSummary.attributeCount}</strong> · Registered requests:{" "}
+            <strong>{orgSummary.requestCount}</strong> (<code>{coreRequests.join(", ")}</code>)
+          </p>
+          <div set:html={organizationTableHtml} />
+          <p class="note">
+            Rendered at build time from typed demo rows via <code>@goliath/semantic</code>. See{" "}
+            <a href={brand.hosts.app}>app.goliathresearch.com</a> for the full schema breakdown.
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">GoliathOmics Action Vocabulary</p>
+          <h3>Registered Workflow &amp; Domain Actions</h3>
+          <p>
+            Domain applications extend the core engine with typed capability contracts and required permission
+            checks.
+          </p>
+          <dl class="fields">
+            <div>
+              <dt>Omics-namespace actions</dt>
+              <dd>{omicsSummary.omicsActionCount} registered capabilities</dd>
+            </div>
+            <div>
+              <dt>Core engine actions</dt>
+              <dd>{omicsSummary.engineActionCount} registered capabilities</dd>
+            </div>
+            <div>
+              <dt>Total catalog actions</dt>
+              <dd>{omicsSummary.totalActionCount} capabilities validated at build time</dd>
+            </div>
+          </dl>
+          <p style="margin-top: 1rem;">
+            <a href="/omics/">View GoliathOmics architecture</a> ·{" "}
+            <a href="/deployments/">View deployment test setup</a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="status-heading">
+    <div class="wrap">
+      <h2 id="status-heading">Development status across the stack</h2>
+      <p class="prose">
+        Every repository in the Goliath stack declares its status in <code>.goliath/product.json</code>. We
+        distinguish active open-source utilities and core platform components from planned domain applications
+        seeking pilot partners:
+      </p>
+      <table class="semantic-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Summary</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            products.map((product) => (
+              <tr>
+                <td>
+                  <strong>
+                    <a href={`/products/${product.id}/`}>{product.name}</a>
+                  </strong>
+                </td>
+                <td>{categoryLabel(product.category)}</td>
+                <td>
+                  <span class:list={["chip", statusClass(product.status)]}>{statusLabel(product.status)}</span>
+                </td>
+                <td>{product.tagline}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="band">
+        <h2>Validate the platform on your workflow</h2>
+        <p>
+          We are seeking research partners with well-defined analytical workflows and industry partners with
+          focused operational problems suitable for a small, measurable pilot.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/partnerships/">Explore partnership tracks</a>
+          <a class="btn btn-ghost" href="/contact/">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

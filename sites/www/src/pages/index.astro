@@ -9,117 +9,279 @@ const products = sortByHierarchy(await loadProducts());
 
 <Layout
   title="Home"
-  documentTitle="Goliath Research Inc"
-  description="Goliath Research Inc: an academy, the GoliathApp platform, GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, GoliathRealty, and custom development."
+  documentTitle="Goliath Research Inc. — Practical learning. Applied software."
+  description="Goliath Research develops practical Python and data-science learning tools through Goliath Research Academy and is building reusable software for scientific and industrial applications."
 >
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Goliath Research Inc</p>
-      <h1>Open platforms for computational science.</h1>
+      <p class="eyebrow">Goliath Research Inc. · Operating since 2021</p>
+      <h1>Practical learning. Applied software.</h1>
       <p class="lede">
-        The company is eight parts: an academy, the GoliathApp platform, the GoliathOmics genomics
-        application, the GoliathGroundStation launch-ops application, the planned GoliathCrop crop-management
-        application, the planned GoliathFactory manufacturing-operations application, the planned GoliathRealty real estate brokerage application, and custom development on that stack.
+        Goliath Research helps people build skills in Python and data science while developing reusable
+        software for data-intensive applications.
       </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href={brand.academy}>Academy</a>
-        <a class="btn btn-ghost" href="/products/">Products</a>
+      <p class="prose">
+        Goliath Research Inc. is an independent software and education company operating since 2021. We help
+        students, entrepreneurs, and professionals develop practical skills in Python, statistics, and data
+        science through <strong>Goliath Research Academy</strong>. Alongside our educational offerings, we are
+        developing a reusable software platform intended to support data-intensive applications across
+        scientific, agricultural, and industrial domains. We seek education, research, and industry partners to
+        help bring these tools into practical use.
+      </p>
+
+      <div class="pathway-grid">
+        <article class="pathway-card">
+          <div>
+            <p class="kicker">
+              <span class="chip status-live">Available Today</span>
+              <span class="chip">Education</span>
+            </p>
+            <h2>Learn with Goliath Research Academy</h2>
+            <p>
+              Explore practical courses in Python, computational statistics, machine learning, and deep
+              learning built around concise explanations, executable Jupyter notebooks, and real-world
+              examples—with self-paced and instructor-assisted options.
+            </p>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="/academy/">Explore the Academy</a>
+            <a class="btn btn-ghost" href={brand.academy}>academy.goliathresearch.com</a>
+          </div>
+        </article>
+
+        <article class="pathway-card">
+          <div>
+            <p class="kicker">
+              <span class="chip status-early">Platform &amp; Partnerships</span>
+              <span class="chip">Applied Software</span>
+            </p>
+            <h2>Build with Goliath Research</h2>
+            <p>
+              Discuss an education partnership, a research validation workflow, an applied software project, or
+              a focused platform pilot adapting shared capabilities to your domain.
+            </p>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="/partnerships/">Partnership opportunities</a>
+            <a class="btn btn-ghost" href="/technology/">Technology &amp; platform</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="company-heading">
+  <section class="section" aria-labelledby="overview-heading">
     <div class="wrap">
-      <h2 id="company-heading">The company</h2>
-      <ol class="parts">
-        <li>
-          <a href="/academy/">
-            <span class="part-index">01</span>
-            <span>
-              <h2>Academy</h2>
-              <p>Courses live at academy.goliathresearch.com. This site only links there.</p>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="/platform/">
-            <span class="part-index">02</span>
-            <span>
-              <h2>GoliathApp</h2>
-              <p>The platform: role-based access control, a workflow engine, user-defined actions, and distributed workers.</p>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="/omics/">
-            <span class="part-index">03</span>
-            <span>
-              <h2>GoliathOmics</h2>
-              <p>Genomics on GoliathApp, using GoliathAlign, GoliathExtractor, and process packs.</p>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="/products/goliathgroundstation/">
-            <span class="part-index">04</span>
-            <span>
-              <h2>GoliathGroundStation</h2>
-              <p>Launch operations and ground-station monitoring on GoliathApp: gateway ingest, OPC fan-out, operator identity.</p>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="/products/goliathcrop/">
-            <span class="part-index">05</span>
-            <span>
-              <h2>GoliathCrop</h2>
-              <p>Planned crop management on GoliathApp for farms and research stations: fields, operations, sensors, imagery, trials.</p>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="/products/goliathfactory/">
-            <span class="part-index">06</span>
-            <span>
-              <h2>GoliathFactory</h2>
-              <p>Planned manufacturing operations on GoliathApp for precision shops and food processors: travelers, QC, lot genealogy, NCR/CAPA.</p>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="/products/goliathrealty/">
-            <span class="part-index">07</span>
-            <span>
-              <h2>GoliathRealty</h2>
-              <p>Planned real estate brokerage operations on GoliathApp for brokers, agents, and clients: transactions, compliance, escrow, commissions, leads.</p>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="/custom-development/">
-            <span class="part-index">08</span>
-            <span>
-              <h2>Custom development</h2>
-              <p>Applications, process packs, and integrations built with the published stack.</p>
-            </span>
-          </a>
-        </li>
-      </ol>
+      <h2 id="overview-heading">Company overview</h2>
+      <p class="prose">
+        Goliath Research combines practical data-science education with applied software development. To make
+        clear what you can engage with today versus what is under active development, we distinguish the
+        company from its educational offering and its platform initiative:
+      </p>
+      <div class="pillar-grid">
+        <article class="card">
+          <p class="eyebrow">The Company</p>
+          <h3>Goliath Research Inc.</h3>
+          <p>
+            An independent applied software and education company operating since 2021. We lead course
+            development, open-source engineering, custom software projects, and institutional or industry
+            partnerships.
+          </p>
+          <p><a href="/partnerships/">Explore partnerships</a></p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">Educational Offering · Available Today</p>
+          <h3>Goliath Research Academy</h3>
+          <p>
+            Practical, notebook-based education in Python, statistics, and machine learning. Learners work
+            through concise e-books, executable Jupyter notebooks, assessments, and real-world examples.
+          </p>
+          <p><a href="/academy/">Academy overview &amp; courses</a></p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">Development Initiative</p>
+          <h3>Platform Initiative (GoliathApp)</h3>
+          <p>
+            We are developing a reusable platform for building data-intensive applications, with the goal of
+            adapting shared capabilities to the needs of different scientific and industrial domains.
+          </p>
+          <p><a href="/technology/">Verified capabilities &amp; status</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="offerings-heading">
+    <div class="wrap">
+      <h2 id="offerings-heading">Offerings &amp; applications by status</h2>
+      <p class="prose">
+        Everything we build is organized below by current availability—distinguishing live educational resources
+        and standalone open-source tools from the active platform initiative and planned domain applications.
+      </p>
+
+      <div class="status-group">
+        <div class="status-group-header">
+          <h3>Available Today — Education &amp; Standalone Open-Source Tools</h3>
+          <span class="chip status-live">Available Today</span>
+        </div>
+        <ol class="parts">
+          <li>
+            <a href="/academy/">
+              <span class="part-index">01</span>
+              <span>
+                <h2>Goliath Research Academy</h2>
+                <p>
+                  Practical courses in Python, Computational Statistics, Supervised Learning, Unsupervised
+                  Learning, and Deep Learning delivered through e-books and executable Jupyter notebooks at
+                  academy.goliathresearch.com.
+                </p>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/products/goliathalign/">
+              <span class="part-index">02</span>
+              <span>
+                <h2>GoliathAlign &amp; GoliathExtractor</h2>
+                <p>
+                  Standalone open-source bioinformatics utilities: GoliathAlign for sequence alignment and
+                  GoliathExtractor, a performance-optimized fork of MethylDackel focused on methylation
+                  extraction.
+                </p>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/custom-development/">
+              <span class="part-index">03</span>
+              <span>
+                <h2>Applied Software &amp; Custom Development</h2>
+                <p>
+                  Scoped software engineering, domain process packs, analytical workflows, and integrations
+                  built with our published open-source stack.
+                </p>
+              </span>
+            </a>
+          </li>
+        </ol>
+      </div>
+
+      <div class="status-group">
+        <div class="status-group-header">
+          <h3>In Active Development — Core Platform &amp; Validation Applications</h3>
+          <span class="chip status-early">Active Development · Pilot Ready</span>
+        </div>
+        <p class="prose">
+          Our core platform and primary reference applications are implemented in public repositories and under
+          active validation for research and operational pilots:
+        </p>
+        <ol class="parts">
+          <li>
+            <a href="/technology/">
+              <span class="part-index">04</span>
+              <span>
+                <h2>GoliathApp (Platform Initiative)</h2>
+                <p>
+                  The shared application platform: role-based access control, declarative semantic schemas, a
+                  workflow engine, user-defined actions, and distributed workers.
+                </p>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/omics/">
+              <span class="part-index">05</span>
+              <span>
+                <h2>GoliathOmics (Genomics Reference Application)</h2>
+                <p>
+                  Genomics and bioinformatics workflows built on GoliathApp, integrating GoliathAlign,
+                  GoliathExtractor, and domain process packs.
+                </p>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/products/goliathgroundstation/">
+              <span class="part-index">06</span>
+              <span>
+                <h2>GoliathGroundStation (Telemetry &amp; Operations Application)</h2>
+                <p>
+                  Launch operations and ground-station monitoring built on GoliathApp: gateway ingest, OPC
+                  fan-out, and operator identity.
+                </p>
+              </span>
+            </a>
+          </li>
+        </ol>
+      </div>
+
+      <div class="status-group">
+        <div class="status-group-header">
+          <h3>Under Development / Planned — Domain Application Specifications</h3>
+          <span class="chip status-planned">Planned · Seeking Pilot Partners</span>
+        </div>
+        <p class="prose">
+          These domain applications represent planned adaptations on GoliathApp. Rather than presenting planned
+          industry applications as finished off-the-shelf products, we publish their architecture and seek
+          partners with focused operational problems suitable for a small, measurable pilot:
+        </p>
+        <ol class="parts">
+          <li>
+            <a href="/products/goliathcrop/">
+              <span class="part-index">07</span>
+              <span>
+                <h2>GoliathCrop (Planned)</h2>
+                <p>
+                  Planned crop-management application on GoliathApp for commercial farms and agricultural
+                  research stations: fields, operations, sensors, imagery, and research trials.
+                </p>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/products/goliathfactory/">
+              <span class="part-index">08</span>
+              <span>
+                <h2>GoliathFactory (Planned)</h2>
+                <p>
+                  Planned manufacturing-operations application on GoliathApp for precision shops and food
+                  processors: work orders, signed travelers, QC inspections, lot genealogy, and NCR/CAPA.
+                </p>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="/products/goliathrealty/">
+              <span class="part-index">09</span>
+              <span>
+                <h2>GoliathRealty (Planned)</h2>
+                <p>
+                  Planned real estate brokerage operations on GoliathApp for brokers, agents, and clients:
+                  transactions, compliance review, escrow ledger, commissions, and leads.
+                </p>
+              </span>
+            </a>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <section class="section" aria-labelledby="software-heading">
     <div class="wrap">
-      <h2 id="software-heading">How the software fits together</h2>
-      <p>
-        GoliathApp is the platform and the top of the hierarchy. It does not describe the applications
-        built on it. GoliathOmics, GoliathGroundStation, GoliathCrop, GoliathFactory, and GoliathRealty inherit that platform. GoliathOmics also uses
-        two standalone utilities, GoliathAlign and GoliathExtractor. Those utilities do not depend on
-        GoliathApp or GoliathOmics.
+      <h2 id="software-heading">How the software stack fits together</h2>
+      <p class="prose">
+        GoliathApp is the shared platform at the top of the hierarchy and does not depend on downstream
+        applications. GoliathOmics, GoliathGroundStation, and the planned domain applications (GoliathCrop,
+        GoliathFactory, and GoliathRealty) extend GoliathApp. GoliathOmics also integrates two standalone
+        utilities, GoliathAlign and GoliathExtractor.
       </p>
       <Hierarchy products={products} />
       <p>
-        <a href="/products/">Product pages</a> are generated from each repository’s <code>.goliath/product.json</code>.
+        <a href="/products/">Technical product pages</a> are generated directly from each repository’s
+        <code>.goliath/product.json</code> manifest.
       </p>
     </div>
   </section>
@@ -127,11 +289,17 @@ const products = sortByHierarchy(await loadProducts());
   <section class="section">
     <div class="wrap">
       <div class="band">
-        <h2>Deployments</h2>
+        <h2>Partner with Goliath Research</h2>
         <p>
-          Write-ups of real GoliathApp and GoliathOmics deployments will be published here. None are posted yet.
+          Whether you are an educator exploring notebook-based Python and data-science courses, a researcher
+          with a well-defined analytical workflow, or an industry team looking for a focused, measurable software
+          pilot, we would be glad to talk.
         </p>
-        <p><a href="/deployments/">Deployment section</a></p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/partnerships/">View partnership opportunities</a>
+          <a class="btn btn-ghost" href="/deployments/">Deployment write-ups</a>
+          <a class="btn btn-ghost" href="/contact/">Contact us</a>
+        </div>
       </div>
     </div>
   </section>

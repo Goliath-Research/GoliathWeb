@@ -5,18 +5,24 @@ import Layout from "../../layouts/Layout.astro";
 
 <Layout
   title="Contact"
-  description="Contact Goliath Research Inc."
+  description="Contact Goliath Research Inc. for education partnerships, research collaborations, applied software projects, or platform pilots."
 >
   <section class="hero">
     <div class="wrap wrap-narrow">
+      <p class="eyebrow">Goliath Research Inc.</p>
       <h1>Contact</h1>
       <p class="lede">
-        For the platforms, custom development, or a question the academy does not cover, write to
-        {brand.contactEmail}. Course enrollment stays on the academy site.
+        For education partnerships, research collaborations, applied software projects, or a focused platform
+        pilot, write to <a href={brand.contactMailto}>{brand.contactEmail}</a>.
+      </p>
+      <p>
+        Individual course enrollment and self-paced learning take place directly on{" "}
+        <a href={brand.academy}>Goliath Research Academy</a> (<code>academy.goliathresearch.com</code>).
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href={brand.contactMailto}>{brand.contactEmail}</a>
-        <a class="btn btn-ghost" href={brand.academy}>Academy</a>
+        <a class="btn btn-ghost" href="/partnerships/">Partnership opportunities</a>
+        <a class="btn btn-ghost" href={brand.academy}>academy.goliathresearch.com</a>
       </div>
     </div>
   </section>

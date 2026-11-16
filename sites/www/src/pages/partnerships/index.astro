@@ -1,0 +1,136 @@
+---
+import { brand } from "@goliath/ui/brand";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Partnerships"
+  description="Partner with Goliath Research Inc. for Python and data-science education, research workflow validation, applied software projects, and focused platform pilots."
+>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Collaborate with Goliath Research Inc.</p>
+      <h1>Partnerships &amp; Pilot Opportunities</h1>
+      <p class="lede">
+        Goliath Research combines practical data-science education with applied software development. We seek
+        education, research, and industry partners to help bring our learning materials and software platform
+        into practical use.
+      </p>
+      <p class="prose">
+        Operating since 2021, Goliath Research Inc. works with schools, accelerators, research labs, and
+        operating companies. Whether you want to deliver hands-on Python and data-science courses or test a
+        focused software application on our platform, we structure collaborations around clear deliverables and
+        measurable outcomes.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={brand.contactMailto}>Email {brand.contactEmail}</a>
+        <a class="btn btn-ghost" href="/technology/">Review our technology</a>
+        <a class="btn btn-ghost" href="/academy/">Explore the Academy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="tracks-heading">
+    <div class="wrap">
+      <h2 id="tracks-heading">Who we partner with</h2>
+      <p class="prose">
+        We tailor our partnerships to three distinct audiences—connecting our live educational curriculum and
+        our reusable software platform to specific institutional and operational goals:
+      </p>
+      <div class="pillar-grid">
+        <article class="card">
+          <p class="eyebrow">01 · Education Partners</p>
+          <h3>Universities, Colleges &amp; Training Programs</h3>
+          <p>
+            Adopt or license Goliath Research Academy’s e-books, executable Jupyter notebooks, and assessments
+            for self-paced or instructor-assisted cohorts in Python, statistics, and machine learning.
+          </p>
+          <p class="quote-callout">
+            “We are exploring how the platform can support practical learning and applied student projects.”
+          </p>
+          <p><a href="/academy/">View Academy curriculum</a></p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">02 · Research Partners</p>
+          <h3>Academic Labs &amp; Scientific Teams</h3>
+          <p>
+            Collaborate on reproducible analytical pipelines, bioinformatics process packs, and distributed
+            compute workflows using <code>GoliathApp</code>, <code>GoliathOmics</code>,{" "}
+            <code>GoliathAlign</code>, and <code>GoliathExtractor</code>.
+          </p>
+          <p class="quote-callout">
+            “We are seeking a well-defined research workflow against which to validate the platform.”
+          </p>
+          <p><a href="/omics/">View Genomics &amp; Omics stack</a></p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">03 · Industry Partners</p>
+          <h3>Scientific, Agricultural &amp; Industrial Organizations</h3>
+          <p>
+            Co-develop a scoped domain application or operational pilot on <code>GoliathApp</code>—combining
+            role-based access control, workflow orchestration, device or data ingest, and auditability.
+          </p>
+          <p class="quote-callout">
+            “We are looking for a focused operational problem suitable for a small, measurable pilot.”
+          </p>
+          <p><a href="/technology/">View platform capabilities</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="opportunities-heading">
+    <div class="wrap">
+      <h2 id="opportunities-heading">Specific collaboration models</h2>
+      <div class="feature-grid">
+        <article class="card">
+          <p class="kicker"><span class="chip status-live">Available Now</span></p>
+          <h3>Course Delivery &amp; Institutional Licensing</h3>
+          <p>
+            Provide your students, cohort participants, or technical staff with structured e-books and
+            executable Python notebooks in Computational Statistics, Supervised Learning, Unsupervised
+            Learning, and Deep Learning—delivered self-paced or with instructor support.
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="kicker"><span class="chip status-early">Pilot Initiative</span></p>
+          <h3>Focused Platform Pilots</h3>
+          <p>
+            Partner with us to adapt shared <code>GoliathApp</code> capabilities (access control, semantic
+            schemas, workflow engine, distributed workers) to a concrete operational problem in genomics,
+            telemetry, agriculture, manufacturing, or brokerage operations.
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="kicker"><span class="chip status-live">Available Now</span></p>
+          <h3>Applied Software &amp; Custom Development</h3>
+          <p>
+            Engage Goliath Research Inc. to build custom applications, bioinformatics process packs, data
+            integrations, or high-performance compute utilities on our open-source stack.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="band">
+        <h2>Start a conversation</h2>
+        <p>
+          To discuss an education partnership, a research validation project, or a focused industry pilot,
+          write directly to <a href={brand.contactMailto}>{brand.contactEmail}</a> with a brief description of
+          your organization and the problem you want to address.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href={brand.contactMailto}>Write to {brand.contactEmail}</a>
+          <a class="btn btn-ghost" href="/contact/">Contact page</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

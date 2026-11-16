@@ -32,18 +32,14 @@ npm workspaces install from the repository root. A host must run the build there
 
 ## Company site
 
-`sites/www` describes the company in eight parts:
+`sites/www` positions **Goliath Research Inc.** as an independent applied software and education company operating since 2021, clearly distinguishing the company from its live educational offering and its software platform initiative:
 
-1. Academy, linking to https://academy.goliathresearch.com
-2. GoliathApp: role-based access control, workflow engine, user-defined actions, distributed workers
-3. GoliathOmics: inherits GoliathApp and uses GoliathAlign, GoliathExtractor, and process packs
-4. GoliathGroundStation: launch-ops and ground-station monitoring on GoliathApp
-5. GoliathCrop (planned): crop management for farms and research stations on GoliathApp
-6. GoliathFactory (planned): manufacturing operations (travelers, QC, lot genealogy, NCR/CAPA) on GoliathApp
-7. GoliathRealty (planned): real estate brokerage operations (transactions, compliance, escrow, commissions, leads) on GoliathApp
-8. Custom development
+- **Company Overview (`/`)**: Presents the central message (*"Goliath Research combines practical data-science education with applied software development"*), two primary pathways (*Learn with Goliath Research Academy* and *Build with Goliath Research*), and all offerings grouped clearly by status (**Available Today**, **In Active Development / Pilot Ready**, and **Under Development / Planned**).
+- **Goliath Research Academy (`/academy/`)**: Details the notebook-based teaching approach (concise theory and e-books, executable Jupyter notebooks, real-world examples, self-paced and instructor-assisted options) and core courses (Practical Python, Computational Statistics, Supervised Learning, Unsupervised & Deep Learning), linking to https://academy.goliathresearch.com.
+- **Technology & Platform Initiative (`/technology/` and `/platform/`)**: Describes **GoliathApp** (role-based access control, workflow engine, semantic schemas, user-defined actions, distributed workers), includes a build-time demonstration from `@goliath/semantic`, highlights **GoliathOmics** (`/omics/`) and **GoliathGroundStation** as concrete validation applications, and shows a full development status table across the stack.
+- **Partnerships & Pilots (`/partnerships/` and `/custom-development/`)**: Outlines collaboration tracks for **Education Partners** (course delivery, institutional licensing, student projects), **Research Partners** (workflow validation on GoliathApp and GoliathOmics), and **Industry Partners** (focused operational pilots and custom development).
 
-Product pages under `/products/<id>/` are generated at build time from the public `main` branch of:
+Technical product pages under `/products/<id>/` are generated at build time from the public `main` branch of:
 
 - Goliath-Research/GoliathApp
 - Goliath-Research/GoliathOmics
