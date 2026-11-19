@@ -23,11 +23,14 @@ const organizationTableHtml = renderOrganizationTable(DEMO_ORGANIZATION_ROWS);
       <p class="eyebrow">app.goliathresearch.com</p>
       <h1>GoliathApp</h1>
       <p class="lede">
-        Static pages on this host use the published GoliathApp semantic catalog at build time. There is no
-        database or runtime API on this site.
+        app.goliathresearch.com serves the GoliathApp platform host: the signed-in operator portal where
+        workflows, actions, domain programs, the semantic layer, and the Meta model are visualized, created,
+        edited, and managed. This static Astro page is not the application; it only summarizes the published
+        semantic catalog at build time and has no database or runtime API.
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary" href={`${brand.hosts.www}/platform/`}>Platform on the company site</a>
+        <a class="btn btn-primary" href={`${brand.hosts.app}/app`}>Sign in to the operator portal</a>
+        <a class="btn btn-ghost" href={`${brand.hosts.www}/platform/`}>Platform on the company site</a>
         <a class="btn btn-ghost" href={`${brand.hosts.www}/products/goliathapp/`}>Product page</a>
         <a class="btn btn-ghost" href="https://github.com/Goliath-Research/GoliathApp" rel="noreferrer">Repository</a>
       </div>
