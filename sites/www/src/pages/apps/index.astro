@@ -1,0 +1,48 @@
+---
+import { liveApps } from "@goliath/catalog";
+import Layout from "../../layouts/Layout.astro";
+
+const apps = liveApps;
+---
+
+<Layout
+  title="Applications"
+  description="Live Goliath Research application hosts. Each listed hostname is a running operator portal. Planned hosts are not linked until they respond."
+>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Live application hosts</p>
+      <h1>Applications</h1>
+      <p class="lede">
+        These are the application hosts that are live today, in the form
+        <code>&lt;app&gt;.goliathresearch.com</code>. Open a host to reach its operator portal.
+        Future child applications are added to this list when their host is actually responding.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="live-apps" aria-labelledby="live-apps-heading">
+    <div class="wrap">
+      <h2 id="live-apps-heading">Live hosts</h2>
+      <div class="feature-grid">
+        {
+          apps.map((app) => (
+            <article class="card">
+              <p class="eyebrow">{app.host}</p>
+              <h3>{app.name}</h3>
+              <p>{app.description}</p>
+              <div class="cta-row">
+                <a class="btn btn-primary" href={app.href} rel="noreferrer">
+                  Open {app.host}
+                </a>
+                <a class="btn btn-ghost" href={`/products/${app.id}/`}>
+                  Product page
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

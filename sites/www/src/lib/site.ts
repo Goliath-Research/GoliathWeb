@@ -1,3 +1,4 @@
+import { liveAppNavItems, liveApps } from "@goliath/catalog";
 import { brand } from "@goliath/ui/brand";
 import type { FooterLink, NavItem } from "@goliath/ui/types";
 
@@ -6,8 +7,10 @@ export const nav: NavItem[] = [
   { href: "/technology/", label: "Technology" },
   { href: "/partnerships/", label: "Partnerships" },
   { href: "/products/", label: "Products" },
+  { href: "/apps/", label: "Apps" },
   { href: "/deployments/", label: "Deployments" },
   { href: "/contact/", label: "Contact" },
+  ...liveAppNavItems(),
 ];
 
 export const footerLinks: FooterLink[] = [
@@ -16,6 +19,8 @@ export const footerLinks: FooterLink[] = [
   { href: "/technology/", label: "Technology" },
   { href: "/partnerships/", label: "Partnerships" },
   { href: "/products/", label: "Products" },
+  { href: "/apps/", label: "Apps" },
+  ...liveApps.map((app) => ({ href: app.href, label: app.host })),
   { href: brand.github, label: "GitHub" },
   { href: "/contact/", label: "Contact" },
   { href: brand.contactMailto, label: brand.contactEmail },

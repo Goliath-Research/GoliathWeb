@@ -53,8 +53,9 @@ const processPacks = omics.features.find((feature) => /process pack/i.test(featu
       </div>
       <p class="note">
         We are seeking research partners with well-defined genomics and bioinformatics workflows against which
-        to validate {omics.name}. Note that <code>omics.goliathresearch.com</code> is a static vocabulary site
-        in this repository, not a public portal.
+        to validate {omics.name}. The live operator host is{" "}
+        <a href={brand.hosts.omics}>{brand.hosts.omics.replace("https://", "")}</a>, listed with other live
+        application hosts on the <a href="/apps/">Apps</a> page.
       </p>
     </div>
   </section>
