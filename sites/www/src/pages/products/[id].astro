@@ -1,6 +1,7 @@
 ---
 import {
   consumersOf,
+  liveAppFor,
   loadProducts,
   requireProduct,
   type Product,
@@ -45,6 +46,7 @@ const website = httpsHref(product.links.website);
 const publishedDocs = httpsHref(product.links.docs);
 const docsSource = repository ? `${repository.replace(/\/$/, "")}/tree/${product.source.ref}/docs` : undefined;
 const isPlanned = ["goliathcrop", "goliathfactory", "goliathrealty"].includes(product.id);
+const liveApp = liveAppFor(product.id);
 ---
 
 <Layout title={product.name} description={productUserSummary(product.id, product.tagline)}>
@@ -95,6 +97,11 @@ const isPlanned = ["goliathcrop", "goliathfactory", "goliathrealty"].includes(pr
             )
           )
         }
+        {liveApp && (
+          <a class="btn btn-primary" href={liveApp.href} rel="noreferrer">
+            Open {liveApp.host}
+          </a>
+        )}
         {website && <a class="btn btn-ghost" href={website} rel="noreferrer">Website</a>}
         <a class="btn btn-ghost" href="/products/">All products</a>
       </div>

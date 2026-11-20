@@ -1,15 +1,17 @@
 # GoliathWeb
 
-Static sites for Goliath Research Inc, in one repository. Each site builds on its own. `sites/www` is published to GitHub Pages. `sites/app`, `sites/omics`, `sites/crop`, `sites/factory`, and `sites/realty` are not published. This repository does not change DNS.
+Static sites for Goliath Research Inc, in one repository. Each site builds on its own. `sites/www` is published to GitHub Pages. `sites/app`, `sites/omics`, `sites/crop`, `sites/factory`, and `sites/realty` in this repository are not published. This repository does not change DNS.
 
 | Host | Directory | What it is |
 | --- | --- | --- |
-| [www.goliathresearch.com](https://www.goliathresearch.com) | `sites/www` | Global company site. Built now. |
-| [app.goliathresearch.com](https://app.goliathresearch.com) | `sites/app` | GoliathApp platform site. Placeholder. |
-| [omics.goliathresearch.com](https://omics.goliathresearch.com) | `sites/omics` | GoliathOmics site. Placeholder. |
-| [crop.goliathresearch.com](https://crop.goliathresearch.com) | `sites/crop` | GoliathCrop site. Placeholder (product planned). |
-| [factory.goliathresearch.com](https://factory.goliathresearch.com) | `sites/factory` | GoliathFactory site. Placeholder (product planned). |
-| [realty.goliathresearch.com](https://realty.goliathresearch.com) | `sites/realty` | GoliathRealty site. Placeholder (product planned). |
+| [www.goliathresearch.com](https://www.goliathresearch.com) | `sites/www` | Global company site. Published from this repository. |
+| [app.goliathresearch.com](https://app.goliathresearch.com) | (platform host, not this repo) | Live GoliathApp operator portal. Linked from www. |
+| [omics.goliathresearch.com](https://omics.goliathresearch.com) | (platform host, not this repo) | Live GoliathOmics operator portal on the shared platform host. Linked from www. |
+| crop / factory / realty | `sites/crop`, `sites/factory`, `sites/realty` | Unpublished placeholders in this repo. Those hostnames are not live and are not linked from www. |
+
+`sites/app` and `sites/omics` remain unpublished static summaries in this repository. They are not the operator portals. Live application hosts are listed once in `packages/catalog/src/live-apps.ts` and rendered on www (header, footer, `/apps/`, and the products section). Add a child app to that list only when its host actually responds.
+
+Documentation sites for the products themselves publish from each product repository (for example <https://goliath-research.github.io/GoliathApp/> and <https://goliath-research.github.io/GoliathOmics/>).
 
 [academy.goliathresearch.com](https://academy.goliathresearch.com) stays on the academy host. This repo only links to it.
 
@@ -110,7 +112,7 @@ Asset URLs are root paths such as `/_astro/...`. They match `https://www.goliath
 
 The www build needs outbound HTTPS to `https://raw.githubusercontent.com`. Do not add a token.
 
-`app.goliathresearch.com`, `omics.goliathresearch.com`, `crop.goliathresearch.com`, `factory.goliathresearch.com`, and `realty.goliathresearch.com` stay unpublished. One GitHub repository has one Pages site and one custom domain, so those five hostnames need a separate host when they are ready. Leave `academy.goliathresearch.com` where it is.
+This repository's Pages site publishes only `www.goliathresearch.com`. `app.goliathresearch.com` and `omics.goliathresearch.com` are live operator portals served by the GoliathApp platform host, not by this repository. `crop.goliathresearch.com`, `factory.goliathresearch.com`, and `realty.goliathresearch.com` are not live and are not linked from www. One GitHub repository has one Pages site and one custom domain. Leave `academy.goliathresearch.com` where it is.
 
 ### DNS
 

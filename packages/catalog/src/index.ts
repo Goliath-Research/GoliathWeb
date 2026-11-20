@@ -11,3 +11,5 @@ export {
 export { productAssetUrl, PRODUCT_SOURCES } from "./sources.ts";
 export type { ProductAsset } from "./sources.ts";
 export type { Product, ProductFeature, ProductLinks, ProductSource } from "./types.ts";
+export { liveAppFor, liveAppNavItems, liveApps } from "./live-apps.ts";
+export type { LiveApp } from "./live-apps.ts";

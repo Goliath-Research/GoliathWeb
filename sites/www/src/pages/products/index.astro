@@ -1,5 +1,5 @@
 ---
-import { loadProducts, requireProduct, sortByHierarchy } from "@goliath/catalog";
+import { liveApps, loadProducts, requireProduct, sortByHierarchy } from "@goliath/catalog";
 import Hierarchy from "../../components/Hierarchy.astro";
 import ProductCard from "../../components/ProductCard.astro";
 import Layout from "../../layouts/Layout.astro";
@@ -34,9 +34,44 @@ const plannedApps = [crop, factory, realty];
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#ready-tools">Ready-to-use tools</a>
+        <a class="btn btn-ghost" href="#live-apps">Live application hosts</a>
         <a class="btn btn-ghost" href="#active-platform">Platform &amp; reference apps</a>
         <a class="btn btn-ghost" href="#planned-apps">Planned domain apps</a>
         <a class="btn btn-ghost" href="/partnerships/">Propose a pilot</a>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="live-apps" aria-labelledby="live-apps-heading">
+    <div class="wrap">
+      <div class="status-group-header">
+        <h2 id="live-apps-heading">Live application hosts</h2>
+        <span class="chip status-live">Available Now</span>
+      </div>
+      <p class="prose">
+        These <code>&lt;app&gt;.goliathresearch.com</code> hosts are live operator portals. The list is
+        defined once for the company site; a new child app is added when its host actually responds.
+        See also the dedicated <a href="/apps/">Apps</a> page.
+      </p>
+      <div class="feature-grid">
+        {
+          liveApps.map((app) => (
+            <article class="card">
+              <p class="eyebrow">{app.host}</p>
+              <h3>{app.name}</h3>
+              <p>{app.description}</p>
+              <div class="cta-row">
+                <a class="btn btn-primary" href={app.href} rel="noreferrer">
+                  Open {app.host}
+                </a>
+                <a class="btn btn-ghost" href={`/products/${app.id}/`}>
+                  Product page
+                </a>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>

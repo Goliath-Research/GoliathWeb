@@ -1,5 +1,5 @@
 ---
-import type { Product } from "@goliath/catalog";
+import { liveAppFor, type Product } from "@goliath/catalog";
 import {
   productDomainLabel,
   productUserSummary,
@@ -14,6 +14,7 @@ interface Props {
 
 const { product } = Astro.props;
 const repository = product.links.repository ? safeUrl(product.links.repository) : undefined;
+const liveApp = liveAppFor(product.id);
 const topFeatures = product.features.slice(0, 3);
 ---
 
@@ -41,6 +42,13 @@ const topFeatures = product.features.slice(0, 3);
   </div>
   <div class="cta-row product-card-actions">
     <a class="btn btn-primary" href={`/products/${product.id}/`}>Product details</a>
+    {
+      liveApp && (
+        <a class="btn btn-ghost" href={liveApp.href} rel="noreferrer">
+          Open {liveApp.host}
+        </a>
+      )
+    }
     {
       repository && (
         <a class="btn btn-ghost" href={repository} rel="noreferrer">

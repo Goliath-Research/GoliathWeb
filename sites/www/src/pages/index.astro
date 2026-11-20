@@ -1,5 +1,5 @@
 ---
-import { loadProducts, sortByHierarchy } from "@goliath/catalog";
+import { liveApps, loadProducts, sortByHierarchy } from "@goliath/catalog";
 import { brand } from "@goliath/ui/brand";
 import Hierarchy from "../components/Hierarchy.astro";
 import Layout from "../layouts/Layout.astro";
@@ -66,6 +66,20 @@ const products = sortByHierarchy(await loadProducts());
             <a class="btn btn-ghost" href="/technology/">Technology &amp; platform</a>
           </div>
         </article>
+      </div>
+
+      <div class="cta-row" style="margin-top: 1.5rem;">
+        <span class="eyebrow">Live application hosts</span>
+      </div>
+      <div class="cta-row">
+        {
+          liveApps.map((app) => (
+            <a class="btn btn-ghost" href={app.href} rel="noreferrer">
+              {app.host}
+            </a>
+          ))
+        }
+        <a class="btn btn-ghost" href="/apps/">All live apps</a>
       </div>
     </div>
   </section>
