@@ -2,6 +2,7 @@
 import { loadProducts, requireProduct } from "@goliath/catalog";
 import { brand } from "@goliath/ui/brand";
 import Markdown from "../../components/Markdown.astro";
+import { safeUrl } from "../../lib/markdown.ts";
 import Layout from "../../layouts/Layout.astro";
 
 const products = await loadProducts();
@@ -9,6 +10,8 @@ const omics = requireProduct(products, "goliathomics");
 const align = requireProduct(products, "goliathalign");
 const extractor = requireProduct(products, "goliath-extractor");
 const processPacks = omics.features.find((feature) => /process pack/i.test(feature.title));
+const publishedDocs = omics.links.docs ? safeUrl(omics.links.docs) : undefined;
+const workflowDiagrams = publishedDocs ? `${publishedDocs.replace(/\/$/, "")}/workflows/` : undefined;
 ---
 
 <Layout
@@ -45,6 +48,20 @@ const processPacks = omics.features.find((feature) => /process pack/i.test(featu
       }
       <div class="cta-row">
         <a class="btn btn-primary" href={`/products/${omics.id}/`}>Product page</a>
+        {
+          workflowDiagrams && (
+            <a class="btn btn-ghost" href={workflowDiagrams} rel="noreferrer">
+              Workflow diagrams
+            </a>
+          )
+        }
+        {
+          publishedDocs && (
+            <a class="btn btn-ghost" href={publishedDocs} rel="noreferrer">
+              Documentation
+            </a>
+          )
+        }
         <a class="btn btn-ghost" href="/technology/">Technology overview</a>
         <a class="btn btn-ghost" href="/partnerships/">Research partnerships</a>
         <a class="btn btn-ghost" href={`/products/${align.id}/`}>{align.name}</a>
